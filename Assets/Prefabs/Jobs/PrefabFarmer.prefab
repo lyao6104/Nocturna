@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4877348448465525462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2098931499843810757}
+  - component: {fileID: 4877348448465525463}
+  m_Layer: 0
+  m_Name: PrefabFarmer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2098931499843810757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4877348448465525462}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4877348448465525463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4877348448465525462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2d8e3d32843bc42a823ecd648f831a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jobName: Farmer
+  validTargetTypes:
+    allowedSpecies:
+    - Any
+    allowedProfessions:
+    - Any
+    minWealth: 0
+    maxWealth: 0
+    allowDead: 0
+  genericDialogue:
+  - species: Human
+    dialogue:
+    - It's almost harvesting season.
+    - Hey %targetCommonName%, were you sneaking around my farm the other day?
+    - Howdy, %targetCommonName%.
+  desiredItemCounts:
+  - key: Belt
+    val: 1
+  possibleAnimals:
+  - name: Cow
+    pluralName: Cows
+    desc: A large farm animal commonly raised for the milk they produce.
+    type:
+    - Farm Animal
+    value: 10
+    possibleProduce:
+    - name: Cow Milk
+      pluralName: Cow Milk
+      desc: Milk from a cow.
+      type:
+      - Produce
+      - Food
+      value: 4
+  - name: Chicken
+    pluralName: Chickens
+    desc: Chickens lay eggs, which can be gathered by farmers.
+    type:
+    - Farm Animal
+    value: 7
+    possibleProduce:
+    - name: Chicken Egg
+      pluralName: Chicken Eggs
+      desc: An unfertilized egg from a chicken.
+      type:
+      - Produce
+      - Food
+      value: 3
+  - name: Iova Hog
+    pluralName: Iova Hogs
+    desc: A breed of pig known for its love of the Iova fruit. Farmers typically
+      use them to help with foraging.
+    type:
+    - Farm Animal
+    value: 12
+    possibleProduce:
+    - name: Iova Fruit
+      pluralName: Iova Fruits
+      desc: Fruit from the Iova tree. Has a sweet scent.
+      type:
+      - Produce
+      - Food
+      value: 5
+    - name: Mundane Cutillo Fruit
+      pluralName: Mundane Cutillo Fruits
+      desc: An old Cutillo fruit that has lost it's magical properties.  It is still
+        fresh enough to eat, however.
+      type:
+      - Produce
+      - Food
+      value: 2
+  possibleCrops:
+  - name: Carrot
+    pluralName: Carrots
+    desc: An orange vegetable that grows in the ground.
+    type:
+    - Produce
+    - Food
+    value: 3
+  - name: Lettuce
+    pluralName: Lettuce
+    desc: A leafy green vegetable.
+    type:
+    - Produce
+    - Food
+    value: 3
+  - name: Potato
+    pluralName: Potatoes
+    desc: A starchy root vegetable that grows in the ground.
+    type:
+    - Produce
+    - Food
+    value: 3
+  - name: Wheat
+    pluralName: Wheat
+    desc: A grain that can be ground into flour.
+    type:
+    - Produce
+    - Grain
+    value: 3
+  harvestDate:
+    year: 0
+    month: 0
+    day: 0
+  minHarvestDays: 20
+  minJobSkillToReduceGrowTime: 60

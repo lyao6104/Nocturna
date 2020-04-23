@@ -1,0 +1,367 @@
+﻿/* Name: L. Yao
+ * Date: November 4, 2019
+ * Desc: Handles all town-related stuff as well as things related to the UI and simulation */
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using DateWeatherSeasonLib;
+
+[System.Serializable]
+public class InfoBar
+{
+	public GameObject DateLabel, WeatherSeasonLabel;
+}
+
+public class GameControllerScript : MonoBehaviour
+{
+	public GameObject pauseMenu, eventLog;
+	public GameObject evtLogTxtTemplate;
+	public List<string> citizenTypesKey = new List<string>(); // Make sure this is the same size as the values list
+	public List<GameObject> citizenTypesVal = new List<GameObject>();
+	public List<CitizenScript> citizens = new List<CitizenScript>();
+	public int maxCitizens;
+	public InfoBar infoBar;
+	public int maxEvtLogMessages;
+
+	public bool isPaused, scrollToBottomOnNewDay;
+	public Date curDate;
+	public Weather curWeather;
+	public Season curSeason;
+
+	public Selectable[] disableOnPauseUI;
+	public GameObject defaultUIGroup, citizenViewUIGroup, citizenDetailViewUIGroup;
+
+	private Dictionary<string, Color> colourTable = new Dictionary<string, Color>();
+	private Dictionary<string, GameObject> citizenTypes = new Dictionary<string, GameObject>();
+
+	// Start is called before the first frame update
+	private void Start()
+	{
+		Application.targetFrameRate = 60;
+
+		// There's a weird bug that if you exit and re-open the simulation, days don't pass properly until you pause and unpause.
+		// To avoid that issue, I'm just going to pause and unpause once when the simulation starts.
+		PauseUnpause(true);
+		PauseUnpause(true);
+		
+		
+		if (!isPaused)
+		{
+			pauseMenu.SetActive(false);
+		}
+		else
+		{
+			pauseMenu.SetActive(true);
+		}
+
+		// Set up the dictionary of citizen types
+		for (int i = 0; i < citizenTypesKey.Count; i++)
+		{
+			citizenTypes[citizenTypesKey[i]] = citizenTypesVal[i];
+		}
+
+		UpdateInfoBar();
+		InitializeColourTable();
+
+		// Populate the town up to maxCitizens
+		for (int i = 0; i < maxCitizens; i++)
+		{
+			citizens.Add(SpawnCitizen());
+		}
+		TestingStuff();
+		StartCoroutine(EndDay());
+	}
+
+	// The contents of this function should be empty unless I'm testing things.
+	private void TestingStuff()
+	{
+		//Item legs = new Item("cool leg", "cool legs", new List<string>() { "Debug" }, "cool leg", 3);
+		//for (int i = 0; i < 10; i++)
+		//{
+		//	GetComponent<ShopScript>().SellToShop(new Item(legs));
+		//}
+	}
+
+	// Update is called once per frame
+	private void Update()
+	{
+		if (Input.GetButtonDown("Cancel"))
+		{
+			PauseUnpause();
+		}
+	}
+
+	// Add colours to the colourTable for use elsewhere.
+	private void InitializeColourTable()
+	{
+		colourTable["White"] = Color.white; // Default
+		colourTable["Black"] = Color.black;
+		colourTable["LGray"] = new Color(0.75f, 0.75f, 0.75f); // System messages and actions
+		colourTable["Red"] = Color.red; 
+		colourTable["DRed"] = new Color(0.5f, 0.1f, 0f); // "Bad" things
+		colourTable["Blue"] = Color.blue; // End of day
+		colourTable["Cyan"] = new Color(0.2f, 0.9f, 0.7f); // Human speech
+		colourTable["Green"] = Color.green;
+		colourTable["DGreen"] = new Color(0f, 0.3f, 0f); // Dialogue for wild animals/hostile creatures
+		colourTable["Yellow"] = Color.yellow; // Warnings
+		colourTable["Orange"] = new Color(0.9f, 0.5f, 0f); // Consumption of resources/tools
+		colourTable["Peach"] = new Color(1f, 0.8f, 0.3f); // New day
+	}
+
+	public void UpdateInfoBar()
+	{
+		// Change the label to match the current date
+		infoBar.DateLabel.GetComponent<TMPro.TMP_Text>().SetText(DateFuncs.DateToString(curDate));
+		// Change the season and weather label
+		string weatherSeasonLabel = string.Format("{0} - {1}", curSeason, curWeather);
+		infoBar.WeatherSeasonLabel.GetComponent<TMPro.TMP_Text>().SetText(weatherSeasonLabel);
+	}
+
+	// When the game is paused (either by pressing the menu button or whatever the user bound the Cancel key to),
+	// The simulation stops and the user is unable to interact with certain things.
+	public void PauseUnpause(bool hideMsg = false)
+	{
+		if (isPaused)
+		{
+			pauseMenu.SetActive(false);
+			isPaused = false;
+			Time.timeScale = 1;
+			foreach (Selectable sel in disableOnPauseUI)
+			{
+				sel.interactable = true;
+			}
+			if (!hideMsg)
+			{
+				LogMessage("Game unpaused.", "LGray");
+			}
+			
+		}
+		else
+		{
+			pauseMenu.SetActive(true);
+			isPaused = true;
+			Time.timeScale = 0;
+			// So the user can't press any buttons they shouldn't be able to while they're in the menu.
+			foreach (Selectable sel in disableOnPauseUI)
+			{
+				sel.interactable = false;
+			}
+			if (!hideMsg)
+			{
+				LogMessage("Game paused.", "LGray");
+			}
+		}
+	}
+
+	public void ToggleCitizenView()
+	{
+		if (defaultUIGroup.activeInHierarchy)
+		{
+			defaultUIGroup.SetActive(false);
+			citizenViewUIGroup.SetActive(true);
+		}
+		else
+		{
+			defaultUIGroup.SetActive(true);
+			citizenViewUIGroup.SetActive(false);
+		}
+	}
+
+	public void ToggleCitizenDetails(CitizenScript me)
+	{
+		if (citizenViewUIGroup.activeInHierarchy)
+		{
+			citizenViewUIGroup.SetActive(false);
+			citizenDetailViewUIGroup.GetComponent<CitizenDetailsScript>().me = me;
+			citizenDetailViewUIGroup.SetActive(true);
+		}
+		else
+		{
+			citizenViewUIGroup.SetActive(true);
+			citizenDetailViewUIGroup.GetComponent<CitizenDetailsScript>().me = null;
+			citizenDetailViewUIGroup.SetActive(false);
+		}
+	}
+	public void ToggleCitizenDetails() // For returning to citizen view
+	{
+		citizenViewUIGroup.SetActive(true);
+		citizenDetailViewUIGroup.GetComponent<CitizenDetailsScript>().me = null;
+		citizenDetailViewUIGroup.SetActive(false);
+	}
+
+	// Output a message of a colour found in colourTable to the event log
+	public void LogMessage(string msg, string colour)
+	{
+		GameObject newMsg = Instantiate(evtLogTxtTemplate, eventLog.transform);
+		TMPro.TMP_Text msgComponent = newMsg.GetComponent<TMPro.TMP_Text>();
+		msgComponent.SetText(msg);
+		msgComponent.color = colourTable[colour];
+	}
+
+	// Output a blank line to the event log
+	public void LogSpace()
+	{
+		GameObject newMsg = Instantiate(evtLogTxtTemplate, eventLog.transform);
+		TMPro.TMP_Text msgComponent = newMsg.GetComponent<TMPro.TMP_Text>();
+		msgComponent.SetText(" ");
+	}
+
+	// Create a citizen object and add its CitizenScript to the town.
+	private CitizenScript SpawnCitizen(string type = "random")
+	{
+		citizenViewUIGroup.GetComponent<CitizenViewScript>().numCitizensEver++;
+
+		if (type != "random")
+		{
+			GameObject newCitizen = Instantiate(citizenTypes[type]);
+			return newCitizen.GetComponent<CitizenScript>();
+		}
+		// Create a random citizen if a specific one isn't asked for
+		else
+		{
+			// List containing all the citizen prefabs
+			List<GameObject> prefabsTemp = new List<GameObject>();
+			foreach (GameObject obj in citizenTypes.Values)
+			{
+				prefabsTemp.Add(obj);
+			}
+			GameObject newCitizen = Instantiate(prefabsTemp[Random.Range(0, prefabsTemp.Count)]);
+			return newCitizen.GetComponent<CitizenScript>();
+		}
+	}
+
+	// Get a valid target for a citizen.
+	public CitizenScript GetTarget(CitizenScript me)
+	{
+		CitizenScript target;
+		bool isValid = false;
+		do
+		{
+			target = citizens[Random.Range(0, citizens.Count)];
+			if (me.validTargets.Contains(target))
+			{
+				isValid = true;
+			}
+			else
+			{
+				isValid = false;
+			}
+		} while (target == me || !isValid);
+		return target;
+	}
+
+	// Runs at the end of each day
+	public IEnumerator EndDay(float waitTime = 0f)
+	{
+		yield return new WaitForSeconds(waitTime);
+
+		yield return new WaitForEndOfFrame(); // All of these WaitForEndOfFrames are so that the LogSpaces show up properly.
+
+		curDate = DateFuncs.NextDay(curDate);
+		curWeather = ClimateFuncs.GetRandomWeather();
+		curSeason = ClimateFuncs.GetSeason(curDate);
+
+		LogSpace();
+
+		// Get rid of dead citizens
+		bool buriedSomeone = false;
+		for (int i = 0; i < citizens.Count; i++)
+		{
+			if (citizens[i].isDead)
+			{
+				citizens[i].Bury();
+				buriedSomeone = true;
+				i--;
+			}
+		}
+		if (buriedSomeone)
+		{
+			LogSpace();
+		}
+
+		// A new citizen moves in each day if there's space.
+		if (citizens.Count < maxCitizens)
+		{
+			citizens.Add(SpawnCitizen());
+			yield return new WaitForEndOfFrame();
+			LogSpace();
+		}
+
+		yield return new WaitForEndOfFrame();
+
+		UpdateInfoBar();
+		LogMessage("A new day has begun.\n ", "Peach");
+
+		// Do upkeep for living citizens
+		foreach (CitizenScript citizen in citizens)
+		{
+			if (!citizen.isDead)
+			{
+				citizen.Upkeep();
+				LogSpace();
+			}
+		}
+		LogMessage("The day has ended.", "Blue");
+
+		// Clear excess items from shop, oldest items go first.
+		GetComponent<ShopScript>().ClearExcess();
+
+		// The responsible thing to do would be clearing old event messages after a certain point,
+		// otherwise it will quickly eat up all of the computer's memory.
+		int excessMessages = eventLog.transform.childCount - maxEvtLogMessages;
+		for (int i = 0; i < excessMessages; i++)
+		{
+			if (eventLog.transform.childCount > maxEvtLogMessages)
+			{
+				Destroy(eventLog.transform.GetChild(i).gameObject);
+			}
+		}
+
+		Canvas.ForceUpdateCanvases();
+		if (scrollToBottomOnNewDay)
+		{
+			eventLog.GetComponentInParent<ScrollRect>().verticalNormalizedPosition = 0;
+		}
+	}
+
+	// This function simulates a certain number of days, one after the other.
+	public void SimDays(int numDays)
+	{
+		for (int i = 0; i < numDays; i++)
+		{
+			StartCoroutine(EndDay(i / 4f)); // This should give each EndDay enough time to finish before the next one starts.
+		}
+		StartCoroutine(DisableUIForSeconds(numDays / 4f)); // Disallow user from interacting with certain UI elements until finished simulating.
+	}
+
+	// Finds the number of days it would take to reach the current day one month from now, and simulates that many days.
+	public void SimMonth()
+	{
+		Date futureDate = DateFuncs.GetFutureDate(curDate, 0, 0, 1);
+		SimDays(DateFuncs.DaysUntil(curDate, futureDate));
+	}
+
+	// Disables UI elements in disableOnPauseUI for a certain amount of time.
+	private IEnumerator DisableUIForSeconds(float duration)
+	{
+		foreach (Selectable sel in disableOnPauseUI)
+		{
+			sel.interactable = false;
+		}
+		yield return new WaitForSeconds(duration);
+		foreach (Selectable sel in disableOnPauseUI)
+		{
+			sel.interactable = true;
+		}
+	}
+
+	public void ExitToMenu(bool doSave = false)
+	{
+		// Load menu scene, save if the user wants to
+		//StopAllCoroutines();
+		SceneManager.LoadScene("MainMenuScene");
+	}
+}

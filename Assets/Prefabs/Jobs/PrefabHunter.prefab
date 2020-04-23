@@ -1,0 +1,220 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5247466679330921231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1611596670270813212}
+  - component: {fileID: 5856651154403252149}
+  m_Layer: 0
+  m_Name: PrefabHunter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1611596670270813212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5247466679330921231}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5856651154403252149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5247466679330921231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a990559319716c4297deae16ae53ec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jobName: Hunter
+  validTargetTypes:
+    allowedSpecies:
+    - Any
+    allowedProfessions:
+    - Any
+    minWealth: 0
+    maxWealth: 0
+    allowDead: 0
+  genericDialogue:
+  - species: Human
+    dialogue:
+    - I thought I saw a deer the other day, but its fur was completely white.
+    - There's an awful lot of giant spider nests around Nocturna.
+    - I hope I don't run into a troll today...
+  desiredItemCounts:
+  - key: Belt
+    val: 1
+  huntables:
+  - name: Deer
+    noise: Snorts
+    danger: 0
+    minLoot: 1
+    maxLoot: 3
+    possibleLoot:
+    - name: Deer Hide
+      pluralName: Deer Hides
+      desc: The hide of a deer. Commonly used to make leather.
+      type:
+      - Animal Hide
+      value: 5
+    - name: Venison
+      pluralName: Venison
+      desc: Meat from a deer.
+      type:
+      - Food
+      value: 3
+  - name: Rabbit
+    noise: Vicious Noises
+    danger: -20
+    minLoot: 1
+    maxLoot: 1
+    possibleLoot:
+    - name: Rabbit Meat
+      pluralName: Rabbit Meat
+      desc: Meat from a rabbit.
+      type:
+      - Food
+      value: 3
+  - name: Wolf
+    noise: Howls
+    danger: 10
+    minLoot: 1
+    maxLoot: 4
+    possibleLoot:
+    - name: Wolf Pelt
+      pluralName: Wolf Pelts
+      desc: The pelt of a wolf.
+      type:
+      - Animal Hide
+      value: 4
+  - name: Bear
+    noise: Roars
+    danger: 20
+    minLoot: 1
+    maxLoot: 2
+    possibleLoot:
+    - name: Bear Pelt
+      pluralName: Bear Pelts
+      desc: The pelt of a bear.
+      type:
+      - Animal Hide
+      value: 8
+  - name: Troll
+    noise: Roars
+    danger: 30
+    minLoot: 0
+    maxLoot: 2
+    possibleLoot:
+    - name: Troll Pelt
+      pluralName: Troll Pelts
+      desc: The pelt of a dangerous troll.
+      type:
+      - Animal Hide
+      value: 10
+  - name: Antelope
+    noise: Snorts
+    danger: 0
+    minLoot: 1
+    maxLoot: 3
+    possibleLoot:
+    - name: Antelope Hide
+      pluralName: Antelope Hides
+      desc: The hide of an antelope.
+      type:
+      - Animal Hide
+      value: 5
+    - name: Antelope Meat
+      pluralName: Antelope Meat
+      desc: Meat from an antelope.
+      type:
+      - Food
+      value: 3
+  - name: Giant Spider
+    noise: Hisses
+    danger: 15
+    minLoot: 0
+    maxLoot: 2
+    possibleLoot:
+    - name: Spidersilk
+      pluralName: Spidersilk
+      desc: 'Silk spun from a Giant Spider. '
+      type:
+      - Cloth
+      value: 7
+    - name: Spider Meat
+      pluralName: Spider Meat
+      desc: Meat obtained from a Giant Spider. Gross...
+      type:
+      - Food
+      value: 1
+    - name: Spider Carapace
+      pluralName: Spider Carapaces
+      desc: A chunk of a Giant Spider's carapace.
+      type:
+      - Animal Hide
+      value: 3
+  - name: Pheasant
+    noise: Screeches
+    danger: -10
+    minLoot: 0
+    maxLoot: 2
+    possibleLoot:
+    - name: Pheasant Meat
+      pluralName: Pheasant Meat
+      desc: Meat from a pheasant.
+      type:
+      - Food
+      value: 3
+  - name: Caribou
+    noise: Screams
+    danger: 10
+    minLoot: 1
+    maxLoot: 3
+    possibleLoot:
+    - name: Reindeer Meat
+      pluralName: Reindeer Meat
+      desc: Meat of a reindeer, which are also called caribou in some places.
+      type:
+      - Food
+      value: 4
+    - name: Reindeer Pelt
+      pluralName: Reindeer Pelts
+      desc: The pelt of a reindeer.
+      type:
+      - Animal Hide
+      value: 5
+  - name: Moose
+    noise: Screams
+    danger: 10
+    minLoot: 1
+    maxLoot: 3
+    possibleLoot:
+    - name: Moose Pelt
+      pluralName: Moose Pelts
+      desc: The pelt of a moose.
+      type:
+      - Animal Hide
+      value: 5
+    - name: Moose Meat
+      pluralName: Moose Meat
+      desc: Meat from a moose.
+      type:
+      - Food
+      value: 3
