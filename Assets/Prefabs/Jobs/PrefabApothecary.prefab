@@ -1,0 +1,172 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1962611559519687608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1962611559519687610}
+  - component: {fileID: 1962611559519687611}
+  m_Layer: 0
+  m_Name: PrefabApothecary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1962611559519687610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962611559519687608}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1962611559519687611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962611559519687608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddc246069884ed14791e7f97f2c07dff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jobName: Apothecary
+  validTargetTypes:
+    allowedSpecies:
+    - Any
+    allowedProfessions:
+    - Any
+    minWealth: 0
+    maxWealth: 0
+    allowDead: 0
+  genericDialogue: []
+  desiredItemCounts:
+  - key: Pouch
+    val: 1
+  possibleHerbs:
+  - name: Trollsbane
+    pluralName: Trollsbane
+    desc: A common herb used by apothecaries.
+    type:
+    - Herb
+    value: 3
+    healPower: 5
+  - name: Trollsbane
+    pluralName: Trollsbane
+    desc: A common herb used by apothecaries.
+    type:
+    - Herb
+    value: 3
+    healPower: 5
+  - name: Orange Mushroom
+    pluralName: Orange Mushrooms
+    desc: A common mushroom known for its healing properties. It is also edible,
+      but has a rather bland taste.
+    type:
+    - Herb
+    - Food
+    value: 3
+    healPower: 5
+  - name: Orange Mushroom
+    pluralName: Orange Mushrooms
+    desc: A common mushroom known for its healing properties. It is also edible,
+      but has a rather bland taste.
+    type:
+    - Herb
+    - Food
+    value: 3
+    healPower: 5
+  - name: Liferoot
+    pluralName: Liferoot
+    desc: A common root with minor healing capabilities.
+    type:
+    - Herb
+    value: 3
+    healPower: 5
+  - name: Liferoot
+    pluralName: Liferoot
+    desc: A common root with minor healing capabilities.
+    type:
+    - Herb
+    value: 3
+    healPower: 5
+  - name: Pristine Cutillo Fruit
+    pluralName: Pristine Cutillo Fruits
+    desc: Fruit from the magical Cutillo bush. This sample is pristine.
+    type:
+    - Herb
+    - Food
+    value: 7
+    healPower: 15
+  - name: Old Cutillo Fruit
+    pluralName: Old Cutillo Fruits
+    desc: Fruit from the magical Cutillo bush. This sample is getting stale.
+    type:
+    - Herb
+    - Food
+    value: 4
+    healPower: 8
+  - name: Cutillo Fruit
+    pluralName: Cutillo Fruits
+    desc: Fruit from the magical Cutillo bush. This sample is still fresh.
+    type:
+    - Herb
+    - Food
+    value: 5
+    healPower: 12
+  - name: Earthroot
+    pluralName: Earthroot
+    desc: An elemental root imbued with the power of the earth.
+    type:
+    - Herb
+    value: 8
+    healPower: 20
+  - name: Searoot
+    pluralName: Searoot
+    desc: An elemental root imbued with the power of the oceans
+    type:
+    - Herb
+    value: 8
+    healPower: 20
+  - name: Skyroot
+    pluralName: Skyroot
+    desc: An elemental root imbued with the power of the skies.
+    type:
+    - Herb
+    value: 8
+    healPower: 20
+  - name: Olasan Sap
+    pluralName: Olasan Sap
+    desc: Sap from the rare Olasan tree. It is coveted by alchemists.
+    type:
+    - Herb
+    value: 12
+    healPower: 30
+  - name: Sunderberg Flower
+    pluralName: Sunderberg Flowers
+    desc: A potent medicinal flower found in the Sunderberg Valley.
+    type:
+    - Herb
+    value: 12
+    healPower: 30
+  - name: Midnight Blossom
+    pluralName: Midnight Blossoms
+    desc: A rare flower that can only be found during nighttime. It is very potent
+      when used in healing potions.
+    type:
+    - Herb
+    value: 15
+    healPower: 40
