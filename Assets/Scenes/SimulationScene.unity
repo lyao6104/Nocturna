@@ -4243,7 +4243,7 @@ MonoBehaviour:
   scrollToBottomOnNewDay: 0
   curDate:
     year: 275
-    month: 12
+    month: 6
     day: 31
   curWeather: 0
   curSeason: 3

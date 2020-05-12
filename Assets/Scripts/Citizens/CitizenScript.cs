@@ -128,8 +128,8 @@ public class CitizenScript : MonoBehaviour
 		myMsg = myMsg.Replace("%targetCommonName%", target.commonName);
 		myMsg = myMsg.Replace("%season%", gc.curSeason.ToString().ToLower());
 		myMsg = myMsg.Replace("%seasonCap%", gc.curSeason.ToString());
-		myMsg = myMsg.Replace("%weather%", gc.curWeather.ToString().ToLower());
-		myMsg = myMsg.Replace("%weatherCap%", gc.curWeather.ToString());
+		myMsg = myMsg.Replace("%weather%", DateWeatherSeasonLib.ClimateFuncs.WeatherToString(gc.curWeather).ToLower());
+		myMsg = myMsg.Replace("%weatherCap%", DateWeatherSeasonLib.ClimateFuncs.WeatherToString(gc.curWeather));
 
 		gc.GetComponent<GameControllerScript>().LogMessage(myMsg, "Cyan");
 	}
@@ -144,8 +144,8 @@ public class CitizenScript : MonoBehaviour
 		myMsg = myMsg.Replace("%targetCommonName%", target.commonName);
 		myMsg = myMsg.Replace("%season%", gc.curSeason.ToString().ToLower());
 		myMsg = myMsg.Replace("%seasonCap%", gc.curSeason.ToString());
-		myMsg = myMsg.Replace("%weather%", gc.curWeather.ToString().ToLower());
-		myMsg = myMsg.Replace("%weatherCap%", gc.curWeather.ToString());
+		myMsg = myMsg.Replace("%weather%", DateWeatherSeasonLib.ClimateFuncs.WeatherToString(gc.curWeather).ToLower());
+		myMsg = myMsg.Replace("%weatherCap%", DateWeatherSeasonLib.ClimateFuncs.WeatherToString(gc.curWeather));
 
 		gc.GetComponent<GameControllerScript>().LogMessage(myMsg, "Cyan");
 	}

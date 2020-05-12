@@ -116,7 +116,7 @@ public class GameControllerScript : MonoBehaviour
 		// Change the label to match the current date
 		infoBar.DateLabel.GetComponent<TMPro.TMP_Text>().SetText(DateFuncs.DateToString(curDate));
 		// Change the season and weather label
-		string weatherSeasonLabel = string.Format("{0} - {1}", curSeason, curWeather);
+		string weatherSeasonLabel = string.Format("{0} - {1}", curSeason, ClimateFuncs.WeatherToString(curWeather));
 		infoBar.WeatherSeasonLabel.GetComponent<TMPro.TMP_Text>().SetText(weatherSeasonLabel);
 	}
 
@@ -261,7 +261,7 @@ public class GameControllerScript : MonoBehaviour
 		yield return new WaitForEndOfFrame(); // All of these WaitForEndOfFrames are so that the LogSpaces show up properly.
 
 		curDate = DateFuncs.NextDay(curDate);
-		curWeather = ClimateFuncs.GetRandomWeather();
+		curWeather = ClimateFuncs.GetNextWeather(curWeather, curDate);
 		curSeason = ClimateFuncs.GetSeason(curDate);
 
 		LogSpace();

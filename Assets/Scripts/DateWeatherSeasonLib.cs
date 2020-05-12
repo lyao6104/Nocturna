@@ -107,17 +107,113 @@ namespace DateWeatherSeasonLib
 	}
 
 	[System.Serializable]
-	public enum Weather { Clear, Cloudy, Foggy, Rainy, Stormy }
+	public enum Weather { Clear, ClearCold, ClearHot, Cloudy, Foggy, Rainy, Stormy, Snowy, Dry, Wet, Droughtlike }
 
 	[System.Serializable]
 	public enum Season { Spring, Summer, Autumn, Winter }
 
 	public static class ClimateFuncs
 	{
+		// Each season has specific weather types that are allowed. e.g. you wouldn't have snow in the summer.
+		public static Dictionary<Season, List<Weather>> possibleWeatherForSeason = new Dictionary<Season, List<Weather>>()
+		{
+			{Season.Spring, new List<Weather>() {
+				Weather.Clear, Weather.ClearCold, Weather.Cloudy, Weather.Foggy, Weather.Rainy, Weather.Stormy, Weather.Wet
+			}},
+
+			{Season.Summer, new List<Weather>() {
+				Weather.Clear, Weather.ClearHot, Weather.Cloudy, Weather.Rainy, Weather.Stormy, Weather.Dry, Weather.Droughtlike
+			}},
+
+			{Season.Autumn, new List<Weather>() {
+				Weather.Clear, Weather.ClearCold, Weather.Cloudy, Weather.Foggy, Weather.Rainy, Weather.Stormy, Weather.Wet, Weather.Snowy
+			}},
+
+			{Season.Winter, new List<Weather>() {
+				Weather.Clear, Weather.Cloudy, Weather.Rainy, Weather.Stormy, Weather.Snowy, Weather.ClearCold
+			}}
+		};
+
+		// One kind of weather might lead to another kind of weather. e.g. Clear -> Dry -> Droughtlike
+		// Multiple instances of a particular type of weather can be interpreted as weighting it for RNG
+		public static Dictionary<Weather, List<Weather>> possibleSubsequentWeather = new Dictionary<Weather, List<Weather>>()
+		{
+			{Weather.Clear, new List<Weather>() {
+				Weather.Clear, Weather.Clear, Weather.Clear, Weather.Cloudy, Weather.Foggy, Weather.Rainy, Weather.Wet, Weather.Dry, Weather.ClearCold, Weather.ClearHot, Weather.Snowy
+			}},
+
+			{Weather.ClearCold, new List<Weather>() {
+				Weather.Clear, Weather.Cloudy, Weather.Dry, Weather.ClearCold, Weather.Snowy
+			}},
+
+			{Weather.ClearHot, new List<Weather>() {
+				Weather.Clear, Weather.Dry, Weather.ClearHot
+			}},
+
+			{Weather.Cloudy, new List<Weather>() {
+				Weather.Clear, Weather.Clear, Weather.Clear, Weather.Cloudy, Weather.Cloudy, Weather.Rainy, Weather.Stormy, Weather.Foggy, Weather.Wet, Weather.Snowy, Weather.ClearCold
+			}},
+
+			{Weather.Foggy, new List<Weather>() {
+				Weather.Clear, Weather.Clear, Weather.Clear, Weather.Cloudy, Weather.Cloudy, Weather.Rainy, Weather.Stormy, Weather.Foggy, Weather.Wet
+			}},
+
+			{Weather.Rainy, new List<Weather>() {
+				Weather.Cloudy, Weather.Cloudy, Weather.Rainy, Weather.Stormy, Weather.Snowy, Weather.Foggy, Weather.Wet
+			}},
+
+			{Weather.Stormy, new List<Weather>() {
+				Weather.Rainy, Weather.Stormy, Weather.Snowy, Weather.Foggy, Weather.Wet
+			}},
+
+			{Weather.Snowy, new List<Weather>() {
+				Weather.Rainy, Weather.Stormy, Weather.Snowy, Weather.ClearCold, Weather.Cloudy, Weather.Cloudy
+			}},
+
+			{Weather.Dry, new List<Weather>() {
+				Weather.ClearHot, Weather.ClearHot, Weather.Dry, Weather.Dry, Weather.Dry, Weather.Droughtlike
+			}},
+
+			{Weather.Wet, new List<Weather>() {
+				Weather.Clear, Weather.Clear, Weather.Clear, Weather.Rainy, Weather.Stormy, Weather.Snowy, Weather.Foggy, Weather.Wet
+			}},
+
+			{Weather.Droughtlike, new List<Weather>() {
+				Weather.Droughtlike, Weather.Dry
+			}}
+		};
+
+		// This function should be considered deprecated
 		public static Weather GetRandomWeather()
 		{
 			Weather[] weatherTable = { Weather.Clear, Weather.Cloudy, Weather.Foggy, Weather.Rainy, Weather.Stormy };
 			return weatherTable[Random.Range(0, weatherTable.Length)];
+		}
+
+		// Returns a Weather value based on the current weather and season (calculated from the date).
+		public static Weather GetNextWeather(Weather curWeather, Date curDate)
+		{
+			Season curSeason = GetSeason(curDate);
+			List<Weather> possibleWeather = possibleSubsequentWeather[curWeather];
+			Weather toReturn;
+
+			do
+			{
+				toReturn = possibleWeather[Random.Range(0, possibleWeather.Count)];
+			} while (!possibleWeatherForSeason[curSeason].Contains(toReturn));
+			return toReturn;
+		}
+
+		public static string WeatherToString(Weather weather)
+		{
+			if (weather.ToString().Contains("Clear"))
+			{
+				return "Clear";
+			}
+			else
+			{
+				return weather.ToString();
+			}
 		}
 
 		// Seasons are assumed to last three months, and change on the 21st of a month.

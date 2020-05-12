@@ -76,8 +76,8 @@ public class JobFarmer : ProfessionScript
 			}
 		}
 
-		// Plant crops if nothing is growing already, and if it's either Spring or Summer.
-		if (currentlyGrowing.Count < 1 && (gc.curSeason == Season.Spring || gc.curSeason == Season.Summer))
+		// Plant crops if nothing is growing already, and if it's either Spring or Summer, and NOT Droughtlike or Dry.
+		if (currentlyGrowing.Count < 1 && (gc.curSeason == Season.Spring || gc.curSeason == Season.Summer) && gc.curWeather != Weather.Droughtlike && gc.curWeather != Weather.Dry)
 		{
 			Item cropToGrow = possibleCrops[Random.Range(0, possibleCrops.Count)];
 			int cropsToGrow = Random.Range(1, Mathf.CeilToInt(me.GetEffectiveJobSkill() / 10f));
@@ -94,6 +94,13 @@ public class JobFarmer : ProfessionScript
 			//Debug.Log("timeModifier: " + (float)minJobSkillToReduceGrowTime / me.GetEffectiveJobSkill());
 			harvestDate = DateFuncs.GetFutureDate(gc.curDate, daysTillHarvest);
 			//Debug.Log("Crops will be ready to harvest on " + DateFuncs.DateToString(harvestDate) + ", which is in " + daysTillHarvest + " days.");
+		}
+
+		// Crops get wiped if there's an ongoing drought.
+		if (gc.curWeather == Weather.Droughtlike)
+		{
+			gc.LogMessage("The ongoing drought has withered away " + me.commonName + "'s crops.", "DRed");
+			currentlyGrowing.Clear();
 		}
 
 		// Harvest if crops are ready
