@@ -9,7 +9,7 @@ The simulation is turn-based, with each turn representing a day. The day's event
 about the town and its citizens can be accessed from the menus.
 
 Right now, this project is still very early in development, and there isn't really that much content. If you'd like to take a look, head over to the Releases tab and
-download the latest version.
+download the latest version. Please note that only 64-bit Windows is supported.
 
 ## Citizens
 

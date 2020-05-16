@@ -33,14 +33,21 @@ public class GameControllerScript : MonoBehaviour
 
 	public Selectable[] disableOnPauseUI;
 	public GameObject defaultUIGroup, citizenViewUIGroup, citizenDetailViewUIGroup;
+	public GameObject curDayTextObject; // The TMP object containing the current day's events.
 
-	private Dictionary<string, Color> colourTable = new Dictionary<string, Color>();
+	private Dictionary<string, string> colourTable = new Dictionary<string, string>();
 	private Dictionary<string, GameObject> citizenTypes = new Dictionary<string, GameObject>();
+	private bool simulating = false;
 
 	// Start is called before the first frame update
 	private void Start()
 	{
 		Application.targetFrameRate = 60;
+
+		// We need to initialize a text object first so things actually show up in the event log. This is also done at the end of each day to reduce clutter.
+		GameObject newDay = Instantiate(evtLogTxtTemplate, eventLog.transform);
+		curDayTextObject = newDay;
+		curDayTextObject.GetComponent<TMPro.TMP_Text>().SetText("");
 
 		// There's a weird bug that if you exit and re-open the simulation, days don't pass properly until you pause and unpause.
 		// To avoid that issue, I'm just going to pause and unpause once when the simulation starts.
@@ -97,18 +104,18 @@ public class GameControllerScript : MonoBehaviour
 	// Add colours to the colourTable for use elsewhere.
 	private void InitializeColourTable()
 	{
-		colourTable["White"] = Color.white; // Default
-		colourTable["Black"] = Color.black;
-		colourTable["LGray"] = new Color(0.75f, 0.75f, 0.75f); // System messages and actions
-		colourTable["Red"] = Color.red; 
-		colourTable["DRed"] = new Color(0.5f, 0.1f, 0f); // "Bad" things
-		colourTable["Blue"] = Color.blue; // End of day
-		colourTable["Cyan"] = new Color(0.2f, 0.9f, 0.7f); // Human speech
-		colourTable["Green"] = Color.green;
-		colourTable["DGreen"] = new Color(0f, 0.3f, 0f); // Dialogue for wild animals/hostile creatures
-		colourTable["Yellow"] = Color.yellow; // Warnings
-		colourTable["Orange"] = new Color(0.9f, 0.5f, 0f); // Consumption of resources/tools
-		colourTable["Peach"] = new Color(1f, 0.8f, 0.3f); // New day
+		colourTable["White"] = "#ffffff"; // Default
+		colourTable["Black"] = "#000000";
+		colourTable["LGray"] = "#cccccc"; // System messages and actions
+		colourTable["Red"] = "#ff0000"; 
+		colourTable["DRed"] = "#881100"; // "Bad" things
+		colourTable["Blue"] = "#0000ff"; // End of day
+		colourTable["Cyan"] = "#42e3e0"; // Human speech
+		colourTable["Green"] = "#00ff00";
+		colourTable["DGreen"] = "#004c00"; // Dialogue for wild animals/hostile creatures
+		colourTable["Yellow"] = "#ffea04"; // Warnings
+		colourTable["Orange"] = "#ff9000"; // Consumption of resources/tools
+		colourTable["Peach"] = "#ffcd69"; // New day
 	}
 
 	public void UpdateInfoBar()
@@ -129,9 +136,12 @@ public class GameControllerScript : MonoBehaviour
 			pauseMenu.SetActive(false);
 			isPaused = false;
 			Time.timeScale = 1;
-			foreach (Selectable sel in disableOnPauseUI)
+			if (!simulating)
 			{
-				sel.interactable = true;
+				foreach (Selectable sel in disableOnPauseUI)
+				{
+					sel.interactable = true;
+				}
 			}
 			if (!hideMsg)
 			{
@@ -193,20 +203,22 @@ public class GameControllerScript : MonoBehaviour
 	}
 
 	// Output a message of a colour found in colourTable to the event log
-	public void LogMessage(string msg, string colour)
+	public void LogMessage(string msg, string colour, bool useColourTable = true)
 	{
-		GameObject newMsg = Instantiate(evtLogTxtTemplate, eventLog.transform);
-		TMPro.TMP_Text msgComponent = newMsg.GetComponent<TMPro.TMP_Text>();
-		msgComponent.SetText(msg);
-		msgComponent.color = colourTable[colour];
+		string actualColour = colour;
+		if (useColourTable)
+		{
+			actualColour = colourTable[colour];
+		}
+		TMPro.TMP_Text msgComponent = curDayTextObject.GetComponent<TMPro.TMP_Text>();
+		msgComponent.text += string.Format("<color={1}>{0}</color>\n", msg, actualColour);
 	}
 
 	// Output a blank line to the event log
 	public void LogSpace()
 	{
-		GameObject newMsg = Instantiate(evtLogTxtTemplate, eventLog.transform);
-		TMPro.TMP_Text msgComponent = newMsg.GetComponent<TMPro.TMP_Text>();
-		msgComponent.SetText(" ");
+		TMPro.TMP_Text msgComponent = curDayTextObject.GetComponent<TMPro.TMP_Text>();
+		msgComponent.text += "\n";
 	}
 
 	// Create a citizen object and add its CitizenScript to the town.
@@ -320,6 +332,10 @@ public class GameControllerScript : MonoBehaviour
 			}
 		}
 
+		GameObject newDay = Instantiate(evtLogTxtTemplate, eventLog.transform);
+		curDayTextObject = newDay;
+		curDayTextObject.GetComponent<TMPro.TMP_Text>().SetText("");
+
 		Canvas.ForceUpdateCanvases();
 		if (scrollToBottomOnNewDay)
 		{
@@ -351,7 +367,9 @@ public class GameControllerScript : MonoBehaviour
 		{
 			sel.interactable = false;
 		}
+		simulating = true;
 		yield return new WaitForSeconds(duration);
+		simulating = false;
 		foreach (Selectable sel in disableOnPauseUI)
 		{
 			sel.interactable = true;
