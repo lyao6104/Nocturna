@@ -5,6 +5,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DialogueLib;
+
+/* Dialogue Keys
+ * madeGoodItem: Created a very good item.
+ * madeBadItem: Created a very bad item.
+ * keepItem: Leatherworker keeps what they made.
+ * sellItem: Leatherworker sells what they made.
+ */
 
 public class JobLeatherWorker : ProfessionScript
 {
@@ -159,12 +167,12 @@ public class JobLeatherWorker : ProfessionScript
 		if (totalItemQuality > baseQuality)
 		{
 			newItem.desc += " This item was skillfully made, and is of a high quality.";
-			me.Speak("That took a lot of effort, but I think it was worth it!");
+			me.Speak(DialogueUtil.GetProfessionDialogueLine(jobName, "madeGoodItem", me.species));
 		}
 		else if (totalItemQuality < baseQuality)
 		{
 			newItem.desc += " This item was crudely made, and is generally of a lower quality.";
-			me.Speak("Hmm, what went wrong here...?");
+			me.Speak(DialogueUtil.GetProfessionDialogueLine(jobName, "madeGoodItem", me.species));
 		}
 		if (newItem.jobBonus > 0)
 		{
@@ -189,13 +197,13 @@ public class JobLeatherWorker : ProfessionScript
 		{
 			// Add finished item to worker's inventory.
 			me.inventory.Add(newItem);
-			me.Speak("This " + newItem.name + " should be useful. I think I'll keep it.");
+			me.Speak(newItem.LocalizeString(DialogueUtil.GetProfessionDialogueLine(jobName, "keepItem", me.species)));
 			return;
 		}
 
 		// Otherwise, they should sell the item.
 		float sellModifier = 1.2f + (Random.Range(0, me.GetEffectiveJobSkill()) - 50) / 100f; // Sell price should be higher here for balance reasons.
-		me.Speak("This " + newItem.name + " should be worth a few coins at market.");
+		me.Speak(newItem.LocalizeString(DialogueUtil.GetProfessionDialogueLine(jobName, "sellItem", me.species)));
 		me.GetPaid(Mathf.RoundToInt(newItem.value * sellModifier), true);
 		gc.GetComponent<ShopScript>().SellToShop(newItem);
 		gc.LogMessage(me.myName + " has sold a " + newItem.name + " to the shops for " + newItem.value + " Gold.", "LGray");

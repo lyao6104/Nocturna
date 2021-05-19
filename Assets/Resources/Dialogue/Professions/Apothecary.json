@@ -1,0 +1,21 @@
+{
+  "listName": "ApothecaryLocalizedDialogue",
+  "dialogue": [
+    {
+      "key": "bagFull_Human",
+      "val": "I can't carry any more herbs in my bag."
+    },
+    {
+      "key": "searchSuccess_Human",
+      "val": "Perfect. This is just what I was looking for!"
+    },
+    {
+      "key": "searchFailure_Human",
+      "val": "Doesn't look like there's any %itemName% around..."
+    },
+    {
+      "key": "noHerbs_Human",
+      "val": "Hmm, I don't have anything to make potions with."
+    }
+  ]
+}

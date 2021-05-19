@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DialogueLib;
 
 [System.Serializable]
 public class Huntable
@@ -12,7 +13,26 @@ public class Huntable
 	public string name, noise;
 	public int danger, minLoot, maxLoot;
 	public List<Item> possibleLoot;
+
+	/// <summary>
+	/// Localize a given string, replacing all dynamic dialogue tags with the appropriate text.
+	/// </summary>
+	/// <param name="msg">A string containing dynamic dialogue tags to be replaced.</param>
+	/// <returns>The localized message, as a string.</returns>
+	public string LocalizeString(string msg)
+	{
+		msg = msg.Replace("%huntableName%", name);
+		msg = msg.Replace("%huntableNoise%", string.Format("*{0}*", noise));
+		return msg;
+	}
 }
+
+/* Dialogue Keys
+ * huntSuccess: Successful hunt.
+ * huntFail1: Failed a hunt but didn't die.
+ * huntFail2: Failed a hunt but didn't die.
+ * sellLoot: Selling loot at market.
+ */
 
 public class JobHunter : ProfessionScript
 {
@@ -51,7 +71,7 @@ public class JobHunter : ProfessionScript
 			me.GetPaid(payoff, true); */
 
 			gc.LogMessage(me.myName + " has caught a " + toHunt.name + ".", "LGray");
-			me.Speak("A fine catch.");
+			me.Speak(DialogueUtil.GetProfessionDialogueLine(jobName, "huntSuccess", me.species));
 			// Loot the creature
 			int lootAmt = Random.Range(toHunt.minLoot, toHunt.maxLoot + 1);
 			for (int i = 0; i < lootAmt; i++)
@@ -84,7 +104,7 @@ public class JobHunter : ProfessionScript
 			}
 			if (payoff > 0)
 			{
-				me.Speak("These will fetch a fine price at market.");
+				me.Speak(DialogueUtil.GetProfessionDialogueLine(jobName, "sellLoot", me.species));
 				me.GetPaid(payoff, true);
 				gc.LogMessage(me.myName + " has sold pelts and meats worth " + payoff + " Gold.", "LGray");
 			}
@@ -95,16 +115,16 @@ public class JobHunter : ProfessionScript
 			int msgRoll = Random.Range(0, 2);
 			if (msgRoll == 0)
 			{
-				me.Speak("Blasted " + toHunt.name + "! It got away...");
+				me.Speak(toHunt.LocalizeString(DialogueUtil.GetProfessionDialogueLine(jobName, "huntFail1", me.species)));
 			}
 			else
 			{
-				me.Speak("Damn, that was close. That " + toHunt.name + " almost got me.");
+				me.Speak(toHunt.LocalizeString(DialogueUtil.GetProfessionDialogueLine(jobName, "huntFail2", me.species)));
 			}
 		}
 		else // Creature kills the hunter
 		{
-			gc.LogMessage(toHunt.name + ": *" + toHunt.noise + "*", "DGreen");
+			gc.LogMessage(toHunt.LocalizeString("%huntableName%: %huntableNoise%"), "DGreen");
 			gc.LogMessage("The " + toHunt.name + " has mortally wounded " + me.name + "!", "Yellow");
 			me.Kill();
 		}

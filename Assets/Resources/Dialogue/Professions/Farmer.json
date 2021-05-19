@@ -1,0 +1,21 @@
+{
+  "listName": "FarmerLocalizedDialogue",
+  "dialogue": [
+    {
+      "key": "plantCrops_Human",
+      "val": "Let's plant some %itemNamePlural% today."
+    },
+    {
+      "key": "harvestCrops_Human",
+      "val": "Ah, the harvest is in!"
+    },
+    {
+      "key": "sellProduce_Human",
+      "val": "Nice, I sold {0} Gold worth of produce today."
+    },
+    {
+      "key": "noProduce_Human",
+      "val": "Drat, I got no produce to sell today."
+    }
+  ]
+}

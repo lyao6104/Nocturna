@@ -1,0 +1,21 @@
+{
+  "listName": "LeatherworkerLocalizedDialogue",
+  "dialogue": [
+    {
+      "key": "madeGoodItem_Human",
+      "val": "That took a lot of effort, but I think it was worth it."
+    },
+    {
+      "key": "madeBadItem_Human",
+      "val": "Hmm, what went wrong here...?"
+    },
+    {
+      "key": "keepItem_Human",
+      "val": "This %itemName% should be useful. I think I'll keep it."
+    },
+    {
+      "key": "sellItem_Human",
+      "val": "This %itemName% should be worth a few coins at the market."
+    }
+  ]
+}

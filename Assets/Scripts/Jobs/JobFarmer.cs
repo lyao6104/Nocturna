@@ -6,6 +6,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DateWeatherSeasonLib;
+using DialogueLib;
+
+/* Dialogue Keys
+ * plantCrops: Farmer is planting crops.
+ * harvestCrops: Crops are ready to be harvested.
+ * sellProduce: Farmer sold produce.
+ * noProduce: Farmer has no produce to sell.
+ */
 
 public class JobFarmer : ProfessionScript
 {
@@ -85,7 +93,7 @@ public class JobFarmer : ProfessionScript
 			{
 				currentlyGrowing.Add(new Item(cropToGrow));
 			}
-			me.Speak("Let's plant some " + cropToGrow.pluralName + " today.");
+			me.Speak(cropToGrow.LocalizeString(DialogueUtil.GetProfessionDialogueLine(jobName, "plantCrops", me.species)));
 
 			// Time to grow is affected by jobSkill.
 			int daysTillHarvest = Random.Range(minHarvestDays, maxHarvestDays+1);
@@ -106,7 +114,7 @@ public class JobFarmer : ProfessionScript
 		// Harvest if crops are ready
 		if (DateFuncs.Equals(gc.curDate, harvestDate))
 		{
-			me.Speak("Ah, the harvest is in!");
+			me.Speak(DialogueUtil.GetProfessionDialogueLine(jobName, "harvestCrops", me.species));
 			foreach (Item crop in currentlyGrowing)
 			{
 				Item toAdd = new Item(crop);
@@ -149,18 +157,18 @@ public class JobFarmer : ProfessionScript
 			}
 			if (sellValue > 0)
 			{
-				me.Speak("Nice, I sold " + sellValue + " Gold worth of produce today.");
+				me.Speak(string.Format(DialogueUtil.GetProfessionDialogueLine(jobName, "sellProduce", me.species), sellValue));
 				me.GetPaid(sellValue, true);
 			}
 			else
 			{
-				me.Speak("I ain't got no produce to sell today.");
+				me.Speak(DialogueUtil.GetProfessionDialogueLine(jobName, "noProduce", me.species));
 			}
 			//Debug.Log(me.myName + " has " + foodAmt + " units of food left.");
 		}
 		else
 		{
-			me.Speak("I ain't got no produce to sell today.");
+			me.Speak(DialogueUtil.GetProfessionDialogueLine(jobName, "noProduce", me.species));
 		}
 		animals.Clear();
 		produce.Clear();

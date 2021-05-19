@@ -172,6 +172,7 @@ public class CitizenScript : MonoBehaviour
 			gc.LogMessage(myName + " has perished.", "DRed");
 		}
 		isDead = true;
+		gc.NotifyDeath();
 	}
 
 	// Delete this dead citizen and remove them from the town.

@@ -104,6 +104,7 @@ ehthumbs.db
 sysinfo.txt
 *.stackdump
 
-# I'd rather not make Resources and Sprites public
+# I'd rather not make Sprites and some Resources public
 /[Aa]ssets/[Ss]prites*
-/[Aa]ssets/[Rr]esources*
+/[Aa]ssets/[Rr]esources/[Pp]ortraits*
+/[Aa]ssets/[Rr]esources/[Nn]ame[Ll]ists*

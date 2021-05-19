@@ -1,0 +1,17 @@
+{
+  "listName": "HumanGenericDialogue",
+  "allowedSpecies": ["Human"],
+  "allowedProfessions": ["Any"],
+  "dialogue": [
+    "Hello, I am %name%.",
+    "Hello, %targetCommonName%.",
+    "Just another day in the town of Nocturna...",
+    "*Sighs* another %weather% day...",
+    "I can't believe it's %season% already!",
+    "Everything's coming up %commonName%.",
+    "%targetCommonName% seems kind of sketchy to me...",
+    "Hey, %targetCommonName%, I'm %commonName%.",
+    "Ugh, it's %weather% outside today.",
+    "I can't wait until it's %season% again! Wait..."
+  ]
+}

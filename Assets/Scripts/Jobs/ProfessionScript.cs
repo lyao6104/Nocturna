@@ -17,7 +17,7 @@ public class ProfessionScript : MonoBehaviour
 {
 	public string jobName;
 	public ValidTargetTypes validTargetTypes;
-	public List<ProfessionDialogue> genericDialogue; // Anything here gets added to the list of possible speaking dialogue.
+	//public List<ProfessionDialogue> genericDialogue; // Anything here gets added to the list of possible speaking dialogue.
 	public List<UtilitiesLib.StringIntPair> desiredItemCounts; // Everything here gets added to me.desiredItemCounts upon initialization (same-key entries won't be merged)
 
 	protected GameControllerScript gc;

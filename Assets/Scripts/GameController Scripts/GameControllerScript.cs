@@ -39,6 +39,7 @@ public class GameControllerScript : MonoBehaviour
 	private Dictionary<string, GameObject> citizenTypes = new Dictionary<string, GameObject>();
 	private string dayTextBuffer = "";
 	private bool simulating = false;
+	private bool hasDeadCitizens = false;
 
 	// Start is called before the first frame update
 	private void Start()
@@ -203,6 +204,14 @@ public class GameControllerScript : MonoBehaviour
 		citizenDetailViewUIGroup.SetActive(false);
 	}
 
+	/// <summary>
+	/// Used by other scripts to flag that there has been a death.
+	/// </summary>
+	public void NotifyDeath()
+	{
+		hasDeadCitizens = true;
+	}
+
 	// Output a message of a colour found in colourTable to the event log
 	public void LogMessage(string msg, string colour, bool useColourTable = true)
 	{
@@ -280,19 +289,23 @@ public class GameControllerScript : MonoBehaviour
 		LogSpace();
 
 		// Get rid of dead citizens
-		bool buriedSomeone = false;
-		for (int i = 0; i < citizens.Count; i++)
+		if (hasDeadCitizens)
 		{
-			if (citizens[i].isDead)
+			bool buriedSomeone = false;
+			for (int i = 0; i < citizens.Count; i++)
 			{
-				citizens[i].Bury();
-				buriedSomeone = true;
-				i--;
+				if (citizens[i].isDead)
+				{
+					citizens[i].Bury();
+					buriedSomeone = true;
+					i--;
+				}
 			}
-		}
-		if (buriedSomeone)
-		{
-			LogSpace();
+			if (buriedSomeone)
+			{
+				LogSpace();
+			}
+			hasDeadCitizens = false;
 		}
 
 		// A new citizen moves in each day if there's space.
@@ -322,7 +335,6 @@ public class GameControllerScript : MonoBehaviour
 		TMPro.TMP_Text msgComponent = curDayTextObject.GetComponent<TMPro.TMP_Text>();
 		msgComponent.text = dayTextBuffer;
 		dayTextBuffer = "";
-
 
 		// Clear excess items from shop, oldest items go first.
 		GetComponent<ShopScript>().ClearExcess();

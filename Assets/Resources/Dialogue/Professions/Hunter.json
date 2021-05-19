@@ -1,0 +1,21 @@
+{
+  "listName": "HunterLocalizedDialogue",
+  "dialogue": [
+    {
+      "key": "huntSuccess_Human",
+      "val": "A fine catch."
+    },
+    {
+      "key": "huntFail1_Human",
+      "val": "Blasted %huntableName%! It got away..."
+    },
+    {
+      "key": "huntFail2_Human",
+      "val": "Damn, that was close. That %huntableName% almost got me."
+    },
+    {
+      "key": "sellLoot_Human",
+      "val": "These will fetch a fine price at the market."
+    }
+  ]
+}

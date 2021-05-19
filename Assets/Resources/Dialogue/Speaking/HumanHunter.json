@@ -1,0 +1,10 @@
+{
+  "listName": "HumanHunterDialogue",
+  "allowedSpecies": ["Human"],
+  "allowedProfessions": ["Hunter"],
+  "dialogue": [
+    "I thought I saw a deer the other day, but its fur was completely white.",
+    "There are an awful lot of giant spider nests around Nocturna.",
+    "I hope I don't run into a troll today..."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "listName": "HumanFarmerDialogue",
+  "allowedSpecies": ["Human"],
+  "allowedProfessions": ["Farmer"],
+  "dialogue": [
+    "It's almost harvesting season.",
+    "Hey %targetCommonName%, were you sneaking around my farm the other day?",
+    "Howdy, %targetCommonName%."
+  ]
+}
