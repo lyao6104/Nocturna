@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NamesLib;
 
 public class HumanCitizen : CitizenScript
 {
@@ -13,9 +14,9 @@ public class HumanCitizen : CitizenScript
 		int genderRoll = Random.Range(0, possibleGenders.Count);
 		gender = possibleGenders[genderRoll];
 		portrait = gc.GetComponent<PortraitScript>().GetPortrait("Human", gender);
-		myName = gc.GetComponent<NameScript>().GetName("Human", gender);
-		// A human's common name is the first word in their full name (e.g. Smitty Werbenjagermanjensen's common name would just be Smitty)
-		commonName = myName.Substring(0, myName.IndexOf(' '));
+		NocturnaName nameData = NamesUtil.GetHumanName(gender);
+		myName = nameData.fullName;
+		commonName = nameData.commonName;
 		gameObject.name = myName;
 		money = Random.Range(8, 13); // Humans start with between 8 and 12 gold.
 		jobSkill = Random.Range(50, 71); // Humans aren't really bad at stuff, but won't really excel at anything either.
