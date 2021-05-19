@@ -69,7 +69,7 @@ namespace NamesLib
 			NameList nameList = loadedNamelists[listName];
 
 			// Choose a format
-			string chosenFormat = nameList.nameFormats[0].value;
+			string chosenFormat = nameList.nameFormats[nameList.nameFormats.Count - 1].value;
 			float formatTotalWeights = 0;
 			foreach (WeightedString format in nameList.nameFormats)
 			{
@@ -81,10 +81,11 @@ namespace NamesLib
 				if (formatValue < nameList.nameFormats[i].weight)
 				{
 					chosenFormat = nameList.nameFormats[i].value;
+					break;
 				}
 				else
 				{
-					formatTotalWeights -= nameList.nameFormats[i].weight;
+					formatValue -= nameList.nameFormats[i].weight;
 				}
 			}
 
