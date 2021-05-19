@@ -14,6 +14,8 @@
 - make weather do something (✔️ as of May 12, 2020...technically)
 - season-specific weather? (✔️ as of May 12, 2020)
 - race-specific profession dialogue framework?
+- Citizen personalities
+  - Could affect things like dialogue, likelihood of speaking, working, and so on
 
 ## Tabled
 
