@@ -37,6 +37,7 @@ public class GameControllerScript : MonoBehaviour
 
 	private Dictionary<string, string> colourTable = new Dictionary<string, string>();
 	private Dictionary<string, GameObject> citizenTypes = new Dictionary<string, GameObject>();
+	private string dayTextBuffer = "";
 	private bool simulating = false;
 
 	// Start is called before the first frame update
@@ -210,15 +211,15 @@ public class GameControllerScript : MonoBehaviour
 		{
 			actualColour = colourTable[colour];
 		}
-		TMPro.TMP_Text msgComponent = curDayTextObject.GetComponent<TMPro.TMP_Text>();
-		msgComponent.text += string.Format("<color={1}>{0}</color>\n", msg, actualColour);
+		//TMPro.TMP_Text msgComponent = curDayTextObject.GetComponent<TMPro.TMP_Text>();
+		dayTextBuffer += string.Format("<color={1}>{0}</color>\n", msg, actualColour);
 	}
 
 	// Output a blank line to the event log
 	public void LogSpace()
 	{
-		TMPro.TMP_Text msgComponent = curDayTextObject.GetComponent<TMPro.TMP_Text>();
-		msgComponent.text += "\n";
+		//TMPro.TMP_Text msgComponent = curDayTextObject.GetComponent<TMPro.TMP_Text>();
+		dayTextBuffer += "\n";
 	}
 
 	// Create a citizen object and add its CitizenScript to the town.
@@ -317,6 +318,11 @@ public class GameControllerScript : MonoBehaviour
 			}
 		}
 		LogMessage("The day has ended.", "Blue");
+		
+		TMPro.TMP_Text msgComponent = curDayTextObject.GetComponent<TMPro.TMP_Text>();
+		msgComponent.text = dayTextBuffer;
+		dayTextBuffer = "";
+
 
 		// Clear excess items from shop, oldest items go first.
 		GetComponent<ShopScript>().ClearExcess();
