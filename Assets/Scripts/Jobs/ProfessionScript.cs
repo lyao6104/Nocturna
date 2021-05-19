@@ -57,6 +57,17 @@ public class ProfessionScript : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Localize a given string, replacing all dynamic dialogue tags with the appropriate text.
+	/// Must be overridden by individual professions.
+	/// </summary>
+	/// <param name="msg">A string containing dynamic dialogue tags to be replaced.</param>
+	/// <returns>The localized message, as a string.</returns>
+	public virtual string LocalizeString(string msg)
+	{
+		return msg;
+	}
+
 	public virtual void DoJob()
 	{
 		if (me.isDead)

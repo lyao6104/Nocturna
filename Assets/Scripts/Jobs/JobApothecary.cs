@@ -5,6 +5,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DialogueLib;
+
+/* Dialogue Keys
+ * bagFull: Apothecary can't carry more herbs
+ * searchSuccess: Apothecary found what they were looking for.
+ * searchFailure: Apothecary didn't find the herb they were looking for.
+ * noHerbs: Apothecary has no herbs to make potions with.
+ */
 
 public class JobApothecary : ProfessionScript
 {
@@ -47,7 +55,7 @@ public class JobApothecary : ProfessionScript
 		{
 			if (herbCount >= maxHerbs)
 			{
-				me.Speak("I can't carry any more herbs in my bag.");
+				me.Speak(DialogueUtil.GetProfessionDialogueLine(jobName, "bagFull", me.species));
 				//Debug.Log("maxHerbs: " + maxHerbs + " -- inventorySize: " + me.inventory.Count + " -- herbCount: " + herbCount);
 				break;
 			}
@@ -68,13 +76,13 @@ public class JobApothecary : ProfessionScript
 			int searchRoll = Random.Range(0, 100);
 			if (searchRoll < successChance)
 			{
-				me.Speak("Perfect. This is just what I was looking for!"); // Theoretically, I should be able to create a dictionary of dialogue for each race.
+				me.Speak(DialogueUtil.GetProfessionDialogueLine(jobName, "searchSuccess", me.species));
 				me.inventory.Add(toFind);
 				herbCount++;
 			}
 			else
 			{
-				me.Speak("Doesn't look like there's any " + toFind.name + " around...");
+				me.Speak(toFind.LocalizeString(DialogueUtil.GetProfessionDialogueLine(jobName, "searchFailure", me.species)));
 			}
 		}
 
@@ -134,7 +142,7 @@ public class JobApothecary : ProfessionScript
 		}
 		else
 		{
-			me.Speak("Hmm, I don't have anything to make potions with.");
+			me.Speak(DialogueUtil.GetProfessionDialogueLine(jobName, "noHerbs", me.species));
 		}
 		herbs.Clear();
 	}

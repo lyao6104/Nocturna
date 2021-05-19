@@ -30,6 +30,21 @@ public class Item
 		this.desc = desc;
 		this.value = value;
 	}
+
+	/// <summary>
+	/// Localize a given string, replacing all dynamic dialogue tags with the appropriate text.
+	/// Can be overridden by individual item types.
+	/// </summary>
+	/// <param name="msg">A string containing dynamic dialogue tags to be replaced.</param>
+	/// <returns>The localized message, as a string.</returns>
+	public virtual string LocalizeString(string msg)
+	{
+		msg = msg.Replace("%itemName%", name);
+		msg = msg.Replace("%itemNamePlural%", pluralName);
+		msg = msg.Replace("%itemDesc%", desc);
+		msg = msg.Replace("%itemValue%", value.ToString());
+		return msg;
+	}
 }
 
 [System.Serializable]

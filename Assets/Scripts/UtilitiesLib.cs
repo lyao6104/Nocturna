@@ -14,4 +14,11 @@ namespace UtilitiesLib
         public string key;
         public int val;
     }
+
+    [System.Serializable]
+    public class StringPair
+	{
+        public string key;
+        public string val;
+	}
 }

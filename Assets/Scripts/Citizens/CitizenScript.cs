@@ -121,34 +121,36 @@ public class CitizenScript : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Localize a given string, replacing all dynamic dialogue tags with the appropriate text.
+	/// </summary>
+	/// <param name="msg">A string containing dynamic dialogue tags to be replaced.</param>
+	/// <returns>The localized message, as a string.</returns>
+	public string LocalizeString(string msg)
+	{
+		msg = msg.Replace("%name%", myName);
+		msg = msg.Replace("%commonName%", commonName);
+		msg = msg.Replace("%targetName%", target.myName);
+		msg = msg.Replace("%targetCommonName%", target.commonName);
+		msg = msg.Replace("%season%", gc.curSeason.ToString().ToLower());
+		msg = msg.Replace("%seasonCap%", gc.curSeason.ToString());
+		msg = msg.Replace("%weather%", DateWeatherSeasonLib.ClimateFuncs.WeatherToString(gc.curWeather).ToLower());
+		msg = msg.Replace("%weatherCap%", DateWeatherSeasonLib.ClimateFuncs.WeatherToString(gc.curWeather));
+		return msg;
+	}
+
 	// Get a random line of dialogue and add it to the event log, substituting in certain words into the dialogue (like names) where necessary.
 	protected void Speak()
 	{
-		string myMsg = myName + ": " + dialogue[Random.Range(0, dialogue.Count)];
-		myMsg = myMsg.Replace("%name%", myName);
-		myMsg = myMsg.Replace("%commonName%", commonName);
-		myMsg = myMsg.Replace("%targetName%", target.myName);
-		myMsg = myMsg.Replace("%targetCommonName%", target.commonName);
-		myMsg = myMsg.Replace("%season%", gc.curSeason.ToString().ToLower());
-		myMsg = myMsg.Replace("%seasonCap%", gc.curSeason.ToString());
-		myMsg = myMsg.Replace("%weather%", DateWeatherSeasonLib.ClimateFuncs.WeatherToString(gc.curWeather).ToLower());
-		myMsg = myMsg.Replace("%weatherCap%", DateWeatherSeasonLib.ClimateFuncs.WeatherToString(gc.curWeather));
-
-		gc.GetComponent<GameControllerScript>().LogMessage(myMsg, "Cyan");
+		string myMsg = dialogue[Random.Range(0, dialogue.Count)];
+		Speak(myMsg);
 	}
 
 	// This version of speak allows for other things (other citizens, jobs, etc.) to make this citizen say something.
 	public void Speak(string msg)
 	{
 		string myMsg = myName + ": " + msg;
-		myMsg = myMsg.Replace("%name%", myName);
-		myMsg = myMsg.Replace("%commonName%", commonName);
-		myMsg = myMsg.Replace("%targetName%", target.myName);
-		myMsg = myMsg.Replace("%targetCommonName%", target.commonName);
-		myMsg = myMsg.Replace("%season%", gc.curSeason.ToString().ToLower());
-		myMsg = myMsg.Replace("%seasonCap%", gc.curSeason.ToString());
-		myMsg = myMsg.Replace("%weather%", DateWeatherSeasonLib.ClimateFuncs.WeatherToString(gc.curWeather).ToLower());
-		myMsg = myMsg.Replace("%weatherCap%", DateWeatherSeasonLib.ClimateFuncs.WeatherToString(gc.curWeather));
+		myMsg = LocalizeString(myMsg);
 
 		gc.GetComponent<GameControllerScript>().LogMessage(myMsg, "Cyan");
 	}

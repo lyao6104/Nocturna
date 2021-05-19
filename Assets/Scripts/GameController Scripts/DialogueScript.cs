@@ -13,17 +13,19 @@ public class DialogueScript : MonoBehaviour
 {
 	private void Start()
 	{
-		TextAsset[] dialogueFiles = Resources.LoadAll("Dialogue", typeof(TextAsset)).Cast<TextAsset>().ToArray();
-		foreach(TextAsset dialogueFile in dialogueFiles)
+		// Load generic dialogue
+		TextAsset[] generalDialogueFiles = Resources.LoadAll("Dialogue/Speaking", typeof(TextAsset)).Cast<TextAsset>().ToArray();
+		foreach(TextAsset dialogueFile in generalDialogueFiles)
 		{
-			// This file is just a list of dynamic dialogue tags, so it should be skipped.
-			if (dialogueFile.name == "DynamicDialogueList")
-			{
-				continue;
-			}
-			// Load actual dialogue
-			DialogueList dialogueList = JsonUtility.FromJson<DialogueList>(dialogueFile.text);
-			DialogueUtil.LoadDialogueList(dialogueList);
+			DialogueList generalDialogueList = JsonUtility.FromJson<DialogueList>(dialogueFile.text);
+			DialogueUtil.LoadDialogueList(generalDialogueList);
+		}
+		// Load species-localized profession dialogue
+		TextAsset[] professionDialogueFiles = Resources.LoadAll("Dialogue/Professions", typeof(TextAsset)).Cast<TextAsset>().ToArray();
+		foreach (TextAsset dialogueFile in professionDialogueFiles)
+		{
+			ProfessionDialogueJSON professionDialogueList = JsonUtility.FromJson<ProfessionDialogueJSON>(dialogueFile.text);
+			DialogueUtil.LoadDialogueList(professionDialogueList);
 		}
 	}
 }
