@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UtilitiesLib;
+using DialogueLib;
 
 [System.Serializable]
 public class ValidTargetTypes
@@ -73,6 +74,8 @@ public class CitizenScript : MonoBehaviour
 		}
 		// Each citizen starts out with a set of basic tools.
 		inventory.Add(new Equippable(CommonItems.basicTools));
+		// Initialize dialogue for this citizen.
+		dialogue = DialogueUtil.GetCitizenDialogue(this);
 
 		// Testing stuff
 		//List<string> toolType = new List<string>();

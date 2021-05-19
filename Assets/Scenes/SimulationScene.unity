@@ -4313,6 +4313,7 @@ GameObject:
   - component: {fileID: 1463922278}
   - component: {fileID: 1463922280}
   - component: {fileID: 1463922279}
+  - component: {fileID: 1463922281}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -4421,6 +4422,18 @@ MonoBehaviour:
   fallbackPortrait: {fileID: 21300000, guid: eb0d767c26d430b4b9b1e780f1b9e928, type: 3}
   citizenPrefabs:
   - {fileID: 1064488143890458335, guid: 55b8debaaee5b1d4e8e867a4e99cb89f, type: 3}
+--- !u!114 &1463922281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463922275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee8239b009337214c9f07cfbe49c5dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1470501750
 GameObject:
   m_ObjectHideFlags: 0

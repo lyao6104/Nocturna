@@ -36,6 +36,8 @@ public class ProfessionScript : MonoBehaviour
 		me.validTargetTypes = validTargetTypes;
 
 		// Loop through profession-specific dialogue and add it to the citizen's dialogue list.
+		// Not needed anymore
+		/*
 		foreach (ProfessionDialogue dialogueList in genericDialogue)
 		{
 			if (dialogueList.species == "Any" || dialogueList.species == me.species)
@@ -46,6 +48,7 @@ public class ProfessionScript : MonoBehaviour
 				}
 			}
 		}
+		*/
 
 		// Loop through profession-specific desired item counts and add it to the citizen's desiredItemCounts.
 		foreach (UtilitiesLib.StringIntPair itemCount in desiredItemCounts)
