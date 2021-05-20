@@ -1,0 +1,9 @@
+{
+  "name": "Liferoot",
+  "pluralName": "Liferoot",
+  "type": ["Herb"],
+  "desc": "A common herb with minor healing capabilities.",
+  "value": 3,
+  "healPower": 5,
+  "gatherWeight": 40
+}

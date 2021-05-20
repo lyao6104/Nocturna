@@ -1,0 +1,9 @@
+{
+  "name": "Old Cutillo Fruit",
+  "pluralName": "Old Cutillo Fruits",
+  "type": ["Herb", "Food"],
+  "desc": "Fruit from the magical Cutillo bush. This sample is getting stale.",
+  "value": 4,
+  "healPower": 8,
+  "gatherWeight": 15
+}

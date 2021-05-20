@@ -70,10 +70,10 @@ public class CitizenScript : MonoBehaviour
 		// Each citizen starts with three rations.
 		for (int i = 0; i < 3; i++)
 		{
-			inventory.Add(new Item(CommonItems.basicRation));
+			inventory.Add(new Item(ItemsUtil.GetBasicItem("Ration")));
 		}
 		// Each citizen starts out with a set of basic tools.
-		inventory.Add(new Equippable(CommonItems.basicTools));
+		inventory.Add(new Equippable(ItemsUtil.GetEquipmentItem("Basic Tools")));
 		// Initialize dialogue for this citizen.
 		dialogue = DialogueUtil.GetCitizenDialogue(this);
 

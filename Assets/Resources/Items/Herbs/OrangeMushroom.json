@@ -1,0 +1,9 @@
+{
+  "name": "Orange Mushroom",
+  "pluralName": "Orange Mushrooms",
+  "type": ["Herb", "Food", "Plantable Crop"],
+  "desc": "A common mushroom known for its healing properties. It is also edible, but has a rather bland taste.",
+  "value": 3,
+  "healPower": 5,
+  "gatherWeight": 30
+}

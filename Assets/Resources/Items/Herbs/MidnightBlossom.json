@@ -1,0 +1,9 @@
+{
+  "name": "Midnight Blossom",
+  "pluralName": "Midnight Blossoms",
+  "type": ["Herb"],
+  "desc": "A rare flower that can only be found during nighttime. It is very potent when used in healing potions.",
+  "value": 15,
+  "healPower": 40,
+  "gatherWeight": 5
+}

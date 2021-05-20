@@ -12,7 +12,7 @@ public class Huntable
 {
 	public string name, noise;
 	public int danger, minLoot, maxLoot;
-	public List<Item> possibleLoot;
+	public List<string> possibleLoot;
 
 	/// <summary>
 	/// Localize a given string, replacing all dynamic dialogue tags with the appropriate text.
@@ -76,7 +76,7 @@ public class JobHunter : ProfessionScript
 			int lootAmt = Random.Range(toHunt.minLoot, toHunt.maxLoot + 1);
 			for (int i = 0; i < lootAmt; i++)
 			{
-				Item loot = new Item(toHunt.possibleLoot[Random.Range(0, toHunt.possibleLoot.Count)]);
+				Item loot = new Item(ItemsUtil.GetBasicItem(toHunt.possibleLoot[Random.Range(0, toHunt.possibleLoot.Count)]));
 				gc.LogMessage(me.commonName + " receives a " + loot.name + " from the " + toHunt.name + ".", "LGray");
 				me.inventory.Add(loot);
 				if (loot.type.Contains("Food") && (me.CountItemsByType("Food") > me.prefMinFood || me.money <= me.alwaysDoJobThreshold)) // Sell excess food, or any food you receive if necessary.

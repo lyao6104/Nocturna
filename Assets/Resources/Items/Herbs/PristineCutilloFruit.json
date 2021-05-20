@@ -1,0 +1,9 @@
+{
+  "name": "Pristine Cutillo Fruit",
+  "pluralName": "Pristine Cutillo Fruits",
+  "type": ["Herb", "Food"],
+  "desc": "Fruit from the magical Cutillo bush. This sample is pristine.",
+  "value": 7,
+  "healPower": 15,
+  "gatherWeight": 10
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Chicken Egg",
+  "pluralName": "Chicken Eggs",
+  "type": ["Produce", "Food"],
+  "desc": "An unfertilized egg from a chicken.",
+  "value": 3
+}

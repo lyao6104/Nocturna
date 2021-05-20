@@ -1,0 +1,7 @@
+{
+  "name": "Leather",
+  "pluralName": "Leather",
+  "type": ["Leather", "Material"],
+  "desc": "A material created by tanning animal hides. Used for a variety of purposes.",
+  "value": 3
+}

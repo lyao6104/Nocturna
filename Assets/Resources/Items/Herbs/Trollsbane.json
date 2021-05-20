@@ -1,0 +1,9 @@
+{
+  "name": "Trollsbane",
+  "pluralName": "Trollsbane",
+  "type": ["Herb"],
+  "desc": "A common herb used by apothecaries.",
+  "value": 3,
+  "healPower": 5,
+  "gatherWeight": 30
+}

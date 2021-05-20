@@ -1,0 +1,9 @@
+{
+  "name": "Searoot",
+  "pluralName": "Searoot",
+  "type": ["Herb"],
+  "desc": "An elemental root imbued with the power of the oceans.",
+  "value": 8,
+  "healPower": 20,
+  "gatherWeight": 10
+}

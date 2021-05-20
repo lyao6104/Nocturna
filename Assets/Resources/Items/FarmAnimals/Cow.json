@@ -1,0 +1,8 @@
+{
+  "name": "Cow",
+  "pluralName": "Cows",
+  "type": ["Farm Animal"],
+  "desc": "A large farm animal commonly raised for the milk they produce.",
+  "value": 10,
+  "possibleProduce": ["Cow Milk"]
+}

@@ -1,0 +1,117 @@
+{
+  "bundleName": "Hunter Loot",
+  "items": [
+    {
+      "name": "Deer Hide",
+      "pluralName": "Deer Hides",
+      "type": ["Animal Hide"],
+      "desc": "The hide of a deer. Commonly used to make leather.",
+      "value": 5
+    },
+    {
+      "name": "Venison",
+      "pluralName": "Venison",
+      "type": ["Food"],
+      "desc": "Meat from a deer.",
+      "value": 3
+    },
+    {
+      "name": "Rabbit Meat",
+      "pluralName": "Rabbit Meat",
+      "type": ["Food"],
+      "desc": "Meat from a rabbit.",
+      "value": 3
+    },
+    {
+      "name": "Wolf Pelt",
+      "pluralName": "Wolf Pelts",
+      "type": ["Animal Hide"],
+      "desc": "The pelt of a wolf.",
+      "value": 4
+    },
+    {
+      "name": "Bear Pelt",
+      "pluralName": "Bear Pelts",
+      "type": ["Animal Hide"],
+      "desc": "The pelt of a bear.",
+      "value": 8
+    },
+    {
+      "name": "Troll Pelt",
+      "pluralName": "Troll Pelts",
+      "type": ["Animal Hide"],
+      "desc": "The pelt of a dangerous troll.",
+      "value": 10
+    },
+    {
+      "name": "Antelope Meat",
+      "pluralName": "Antelope Meat",
+      "type": ["Food"],
+      "desc": "Meat from an antelope.",
+      "value": 3
+    },
+    {
+      "name": "Antelope Hide",
+      "pluralName": "Antelope Hides",
+      "type": ["Animal Hide"],
+      "desc": "The hide of an antelope.",
+      "value": 5
+    },
+    {
+      "name": "Spidersilk",
+      "pluralName": "Spidersilk",
+      "type": ["Cloth"],
+      "desc": "Silk spun by a Giant Spider.",
+      "value": 7
+    },
+    {
+      "name": "Spider Carapace",
+      "pluralName": "Spider Carapaces",
+      "type": ["Animal Hide"],
+      "desc": "A chunk of a Giant Spider's carapace.",
+      "value": 3
+    },
+    {
+      "name": "Spider Meat",
+      "pluralName": "Spider Meat",
+      "type": ["Food"],
+      "desc": "Meat from a Giant Spider. Very unpleasant to eat, but marginally better than starving.",
+      "value": 1
+    },
+    {
+      "name": "Pheasant Meat",
+      "pluralName": "Pheasant Meat",
+      "type": ["Food"],
+      "desc": "Meat from a pheasant.",
+      "value": 3
+    },
+    {
+      "name": "Reindeer Meat",
+      "pluralName": "Reindeer Meat",
+      "type": ["Food"],
+      "desc": "Meat from a reindeer, which are also called caribou in some places.",
+      "value": 4
+    },
+    {
+      "name": "Reindeer Hide",
+      "pluralName": "Reindeer Hides",
+      "type": ["Animal Hide"],
+      "desc": "The hide of a reindeer.",
+      "value": 5
+    },
+    {
+      "name": "Moose Meat",
+      "pluralName": "Moose Meat",
+      "type": ["Food"],
+      "desc": "Meat from a moose.",
+      "value": 3
+    },
+    {
+      "name": "Moose Hide",
+      "pluralName": "Moose Hides",
+      "type": ["Animal Hide"],
+      "desc": "The hide of a moose.",
+      "value": 5
+    }
+  ]
+}

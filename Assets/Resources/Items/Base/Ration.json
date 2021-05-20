@@ -1,0 +1,7 @@
+{
+  "name": "Ration",
+  "pluralName": "Rations",
+  "type": ["Food"],
+  "desc": "Well-preserved food stored in a can.",
+  "value": 1
+}

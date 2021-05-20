@@ -1,0 +1,101 @@
+{
+  "bundleName": "Leatherworker Equipment",
+  "items": [
+    {
+      "name": "Leather Toolbelt",
+      "pluralName": "Leather Toolbelts",
+      "desc": "A belt made of leather meant for carrying tools. Worn on the Waist.",
+      "type": ["Equippable", "Waist", "Belt"],
+      "value": 7,
+      "combatBonus": 0,
+      "jobBonus": 5,
+      "breakChance": 5,
+      "equipmentSlot": 4,
+      "isEquipped": false
+    },
+    {
+      "name": "Leather Pouch",
+      "pluralName": "Leather Pouches",
+      "desc": "A simple pouch made of leather, allowing for more productivity.",
+      "type": ["Equippable", "Waist", "Pouch"],
+      "value": 5,
+      "combatBonus": 0,
+      "jobBonus": 3,
+      "breakChance": 1,
+      "equipmentSlot": 4,
+      "isEquipped": false
+    },
+    {
+      "name": "Leather Gloves",
+      "pluralName": "Leather Gloves",
+      "desc": "A pair of leather gloves.",
+      "type": ["Equippable", "Hands", "Gloves", "Armour"],
+      "value": 6,
+      "combatBonus": 2,
+      "jobBonus": 3,
+      "breakChance": 5,
+      "equipmentSlot": 3,
+      "isEquipped": false
+    },
+    {
+      "name": "Leather Hat",
+      "pluralName": "Leather Hats",
+      "desc": "A protective leather hat to cover one's head.",
+      "type": ["Equippable", "Head", "Hat", "Armour"],
+      "value": 10,
+      "combatBonus": 5,
+      "jobBonus": 1,
+      "breakChance": 5,
+      "equipmentSlot": 0,
+      "isEquipped": false
+    },
+    {
+      "name": "Leather Boots",
+      "pluralName": "Leather Boots",
+      "desc": "A pair of leather boots.",
+      "type": ["Equippable", "Feet", "Boots"],
+      "value": 12,
+      "combatBonus": 5,
+      "jobBonus": 3,
+      "breakChance": 5,
+      "equipmentSlot": 6,
+      "isEquipped": false
+    },
+    {
+      "name": "Leather Shoulderpads",
+      "pluralName": "Leather Shoulderpads",
+      "desc": "A pair of leather shoulderpads.",
+      "type": ["Equippable", "Shoulders", "Armour"],
+      "value": 8,
+      "combatBonus": 4,
+      "jobBonus": 0,
+      "breakChance": 5,
+      "equipmentSlot": 1,
+      "isEquipped": false
+    },
+    {
+      "name": "Leather Tunic",
+      "pluralName": "Leather Tunics",
+      "desc": "A simple tunic made of leather. Provides some protection.",
+      "type": ["Equippable", "Chest", "Armour"],
+      "value": 16,
+      "combatBonus": 8,
+      "jobBonus": 0,
+      "breakChance": 3,
+      "equipmentSlot": 2,
+      "isEquipped": false
+    },
+    {
+      "name": "Leather Leggings",
+      "pluralName": "Leather Leggings",
+      "desc": "A pair of leather leggings. Provides some protection.",
+      "type": ["Equippable", "Chest", "Armour"],
+      "value": 13,
+      "combatBonus": 7,
+      "jobBonus": 0,
+      "breakChance": 3,
+      "equipmentSlot": 2,
+      "isEquipped": false
+    }
+  ]
+}

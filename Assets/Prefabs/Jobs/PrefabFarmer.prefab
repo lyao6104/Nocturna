@@ -52,12 +52,6 @@ MonoBehaviour:
     minWealth: 0
     maxWealth: 0
     allowDead: 0
-  genericDialogue:
-  - species: Human
-    dialogue:
-    - It's almost harvesting season.
-    - Hey %targetCommonName%, were you sneaking around my farm the other day?
-    - Howdy, %targetCommonName%.
   desiredItemCounts:
   - key: Belt
     val: 1
@@ -69,13 +63,7 @@ MonoBehaviour:
     - Farm Animal
     value: 10
     possibleProduce:
-    - name: Cow Milk
-      pluralName: Cow Milk
-      desc: Milk from a cow.
-      type:
-      - Produce
-      - Food
-      value: 4
+    - Cow Milk
   - name: Chicken
     pluralName: Chickens
     desc: Chickens lay eggs, which can be gathered by farmers.
@@ -83,13 +71,7 @@ MonoBehaviour:
     - Farm Animal
     value: 7
     possibleProduce:
-    - name: Chicken Egg
-      pluralName: Chicken Eggs
-      desc: An unfertilized egg from a chicken.
-      type:
-      - Produce
-      - Food
-      value: 3
+    - Chicken Egg
   - name: Iova Hog
     pluralName: Iova Hogs
     desc: A breed of pig known for its love of the Iova fruit. Farmers typically
@@ -98,21 +80,8 @@ MonoBehaviour:
     - Farm Animal
     value: 12
     possibleProduce:
-    - name: Iova Fruit
-      pluralName: Iova Fruits
-      desc: Fruit from the Iova tree. Has a sweet scent.
-      type:
-      - Produce
-      - Food
-      value: 5
-    - name: Mundane Cutillo Fruit
-      pluralName: Mundane Cutillo Fruits
-      desc: An old Cutillo fruit that has lost it's magical properties.  It is still
-        fresh enough to eat, however.
-      type:
-      - Produce
-      - Food
-      value: 2
+    - Iova Fruit
+    - Mundane Cutillo Fruit
   possibleCrops:
   - name: Carrot
     pluralName: Carrots

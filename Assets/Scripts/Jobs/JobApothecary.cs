@@ -16,7 +16,7 @@ using DialogueLib;
 
 public class JobApothecary : ProfessionScript
 {
-	public List<Herb> possibleHerbs;
+	//public List<Herb> possibleHerbs;
 
 	private List<Herb> herbs = new List<Herb>(); // Leftover from before citizens had inventories. Might optimize this at some point
 	private int timesToGather = 0; // How many times this citizen can attempt to gather herbs;
@@ -61,7 +61,7 @@ public class JobApothecary : ProfessionScript
 			}
 
 			// Determine what the citizen is trying to find, then calculate success chance based on that. The more potent the herb, the rarer it is.
-			Herb toFind = new Herb(possibleHerbs[Random.Range(0, possibleHerbs.Count)]);
+			Herb toFind = new Herb(ItemsUtil.GetRandomHerb());
 			int successChance = 60;
 			if (toFind.healPower > 20) // Herbs with a healpower > 20 are considered "rare" and are more difficult to find.
 			{

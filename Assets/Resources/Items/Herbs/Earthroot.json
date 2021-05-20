@@ -1,0 +1,9 @@
+{
+  "name": "Earthroot",
+  "pluralName": "Earthroot",
+  "type": ["Herb"],
+  "desc": "An elemental root imbued with the power of the earth.",
+  "value": 8,
+  "healPower": 20,
+  "gatherWeight": 10
+}

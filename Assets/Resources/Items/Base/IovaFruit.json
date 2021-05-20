@@ -1,0 +1,7 @@
+{
+  "name": "Iova Fruit",
+  "pluralName": "Iova Fruits",
+  "type": ["Produce", "Food"],
+  "desc": "Fruit from the Iova tree. Has a sweet scent.",
+  "value": 5
+}

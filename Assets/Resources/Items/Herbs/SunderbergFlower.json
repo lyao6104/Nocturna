@@ -1,0 +1,9 @@
+{
+  "name": "Sunderberg Flower",
+  "pluralName": "Sunderberg Flowers",
+  "type": ["Herb"],
+  "desc": "A potent medicinal flower found in the Sunderberg Valley.",
+  "value": 12,
+  "healPower": 30,
+  "gatherWeight": 5
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Cow Milk",
+  "pluralName": "Cow Milk",
+  "type": ["Produce", "Food"],
+  "desc": "Milk from a cow.",
+  "value": 4
+}

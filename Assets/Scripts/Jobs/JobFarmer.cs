@@ -17,11 +17,11 @@ using DialogueLib;
 
 public class JobFarmer : ProfessionScript
 {
-	public List<FarmAnimal> possibleAnimals;
-	public List<Item> possibleCrops;
+	//public List<FarmAnimal> possibleAnimals;
 	public Date harvestDate;
 	public int minHarvestDays, minJobSkillToReduceGrowTime;
 
+	private static List<Item> possibleCrops;
 	private List<Item> currentlyGrowing;
 	private List<FarmAnimal> animals;
 	private List<Item> produce;
@@ -39,6 +39,8 @@ public class JobFarmer : ProfessionScript
 		produce = new List<Item>();
 		animals = new List<FarmAnimal>();
 		me.GetPaid(Random.Range(5, 15), true); // Give farmers some gold to buy an animal since planting crops takes time.
+
+		possibleCrops = ItemsUtil.CreateItemCollection(new string[] { "Plantable Crop" }, "plantableCrops");
 	}
 
 	public override void DoJob()
@@ -61,7 +63,7 @@ public class JobFarmer : ProfessionScript
 		// Buy animals if possible
 		for (int i = animals.Count; i < maxAnimals; i++)
 		{
-			FarmAnimal toBuy = new FarmAnimal(possibleAnimals[Random.Range(0, possibleAnimals.Count)]);
+			FarmAnimal toBuy = new FarmAnimal(ItemsUtil.GetRandomFarmAnimal());
 			if (me.money >= toBuy.value + me.alwaysDoJobThreshold) // Make sure the farmer has enough money saved to buy the animal
 			{
 				gc.LogMessage(me.name + " has bought a " + toBuy.name + " for " + toBuy.value + " Gold.", "LGray");

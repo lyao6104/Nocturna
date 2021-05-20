@@ -1,0 +1,7 @@
+{
+  "name": "Mundane Cutillo Fruit",
+  "pluralName": "Mundane Cutillo Fruits",
+  "type": ["Produce", "Food"],
+  "desc": "An old Cutillo fruit that has lost it's magical properties.  It is still fresh enough to eat, however.",
+  "value": 2
+}

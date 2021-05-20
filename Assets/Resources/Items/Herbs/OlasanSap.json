@@ -1,0 +1,9 @@
+{
+  "name": "Olasan Sap",
+  "pluralName": "Olasan Sap",
+  "type": ["Herb"],
+  "desc": "Sap from the rare Olasan tree. It is coveted by alchemists.",
+  "value": 12,
+  "healPower": 30,
+  "gatherWeight": 5
+}

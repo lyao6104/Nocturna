@@ -52,127 +52,20 @@ MonoBehaviour:
     minWealth: 0
     maxWealth: 0
     allowDead: 0
-  genericDialogue: []
   desiredItemCounts:
   - key: Animal Hide
     val: 3
   - key: Belt
     val: 1
-  leatherProduct:
-    name: Leather
-    pluralName: Leather
-    desc: A material created by tanning animal hides. Used for a variety of purposes.
-    type:
-    - Leather
-    - Material
-    value: 3
   possibleCreations:
-  - name: Leather Toolbelt
-    pluralName: Leather Toolbelts
-    desc: A belt made of leather meant for carrying tools. Worn on the Waist.
-    type:
-    - Equippable
-    - Waist
-    - Belt
-    value: 7
-    combatBonus: 0
-    jobBonus: 5
-    breakChance: 5
-    equipmentSlot: 4
-    isEquipped: 0
-  - name: Leather Pouch
-    pluralName: Leather Pouches
-    desc: A simple pouch made of leather, allowing for more productivity.
-    type:
-    - Equippable
-    - Waist
-    - Pouch
-    value: 5
-    combatBonus: 0
-    jobBonus: 3
-    breakChance: 1
-    equipmentSlot: 4
-    isEquipped: 0
-  - name: Leather Gloves
-    pluralName: Leather Gloves
-    desc: A pair of leather gloves.
-    type:
-    - Equippable
-    - Hands
-    - Gloves
-    - Armour
-    value: 6
-    combatBonus: 2
-    jobBonus: 3
-    breakChance: 5
-    equipmentSlot: 3
-    isEquipped: 0
-  - name: Leather Hat
-    pluralName: Leather Hats
-    desc: A protective leather hat to cover one's head.
-    type:
-    - Equippable
-    - Head
-    - Hat
-    - Armour
-    value: 10
-    combatBonus: 5
-    jobBonus: 1
-    breakChance: 5
-    equipmentSlot: 0
-    isEquipped: 0
-  - name: Leather Boots
-    pluralName: Leather Boots
-    desc: A pair of leather boots.
-    type:
-    - Equippable
-    - Feet
-    - Boots
-    value: 12
-    combatBonus: 5
-    jobBonus: 3
-    breakChance: 5
-    equipmentSlot: 6
-    isEquipped: 0
-  - name: Leather Shoulderpads
-    pluralName: Leather Shoulderpads
-    desc: A pair of leather shoulderpads.
-    type:
-    - Equippable
-    - Shoulders
-    - Armour
-    value: 8
-    combatBonus: 4
-    jobBonus: 0
-    breakChance: 5
-    equipmentSlot: 1
-    isEquipped: 0
-  - name: Leather Tunic
-    pluralName: Leather Tunics
-    desc: A simple tunic made of leather. Provides some protection.
-    type:
-    - Equippable
-    - Chest
-    - Armour
-    value: 16
-    combatBonus: 8
-    jobBonus: 0
-    breakChance: 3
-    equipmentSlot: 2
-    isEquipped: 0
-  - name: Leather Leggings
-    pluralName: Leather Leggings
-    desc: A pair of leather leggings. Provides some protection.
-    type:
-    - Equippable
-    - Chest
-    - Armour
-    value: 13
-    combatBonus: 7
-    jobBonus: 0
-    breakChance: 3
-    equipmentSlot: 2
-    isEquipped: 0
+  - Leather Toolbelt
+  - Leather Pouch
+  - Leather Gloves
+  - Leather Hat
+  - Leather Boots
+  - Leather Shoulderpads
+  - Leather Tunic
+  - Leather Leggings
   craftingCostS: 1
   craftingCostM: 3
   craftingCostL: 6

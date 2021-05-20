@@ -1,0 +1,8 @@
+{
+  "name": "Iova Hog",
+  "pluralName": "Iova Hogs",
+  "type": ["Farm Animal"],
+  "desc": "A breed of pig known for its love of the Iova fruit. Farmers typically use them to help with foraging.",
+  "value": 12,
+  "possibleProduce": ["Iova Fruit", "Mundane Cutillo Fruit"]
+}

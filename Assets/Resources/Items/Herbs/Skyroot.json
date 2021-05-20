@@ -1,0 +1,9 @@
+{
+  "name": "Skyroot",
+  "pluralName": "Skyroot",
+  "type": ["Herb"],
+  "desc": "An elemental root imbued with the power of the skies.",
+  "value": 8,
+  "healPower": 20,
+  "gatherWeight": 10
+}

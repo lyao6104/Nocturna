@@ -1,0 +1,12 @@
+{
+  "name": "Basic Tools",
+  "pluralName": "Basic Tools",
+  "type": ["Equippable", "Tool"],
+  "desc": "A set of basic tools usable by any profession. Breaks easily. +2 Job and Combat skill.",
+  "value": 3,
+  "combatBonus": 2,
+  "jobBonus": 2,
+  "breakChance": 25,
+  "equipmentSlot": 8,
+  "isEquipped": false
+}

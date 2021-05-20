@@ -1,0 +1,47 @@
+{
+  "bundleName": "Plantable Crops",
+  "items": [
+    {
+      "name": "Carrot",
+      "pluralName": "Carrots",
+      "desc": "An orange vegetable that grows in the ground.",
+      "type": ["Produce", "Food", "Plantable Crop"],
+      "value": 3
+    },
+    {
+      "name": "Lettuce",
+      "pluralName": "Lettuce",
+      "desc": "A leafy green vegetable.",
+      "type": ["Produce", "Food", "Plantable Crop"],
+      "value": 3
+    },
+    {
+      "name": "Potato",
+      "pluralName": "Potatoes",
+      "desc": "A starchy root vegetable that grows in the ground.",
+      "type": ["Produce", "Food", "Plantable Crop"],
+      "value": 3
+    },
+    {
+      "name": "Wheat",
+      "pluralName": "Wheat",
+      "desc": "A grain that can be ground into flour.",
+      "type": ["Produce", "Grain", "Plantable Crop"],
+      "value": 3
+    },
+    {
+      "name": "Pumpkin",
+      "pluralName": "Pumpkins",
+      "desc": "A type of large orange squash with a thick shell.",
+      "type": ["Produce", "Food", "Plantable Crop"],
+      "value": 5
+    },
+    {
+      "name": "Corn",
+      "pluralName": "Corn",
+      "desc": "A starchy vegetable with yellow kernals.",
+      "type": ["Produce", "Food", "Grain", "Plantable Crop"],
+      "value": 4
+    }
+  ]
+}

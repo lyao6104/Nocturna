@@ -1,0 +1,8 @@
+{
+  "name": "Chicken",
+  "pluralName": "Chickens",
+  "type": ["Farm Animal"],
+  "desc": "Chickens lay eggs, which can be gathered by farmers.",
+  "value": 7,
+  "possibleProduce": ["Chicken Egg"]
+}

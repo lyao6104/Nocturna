@@ -16,8 +16,8 @@ using DialogueLib;
 
 public class JobLeatherWorker : ProfessionScript
 {
-	public Item leatherProduct; // Assumed to be defined in the inspector
-	public List<Equippable> possibleCreations; // What the leatherworker can make out of leather
+	//public Item leatherProduct; // Assumed to be defined in the inspector
+	public List<string> possibleCreations; // What the leatherworker can make out of leather
 	public int craftingCostS, craftingCostM, craftingCostL; // How much leather it takes to make something small, medium, or large.
 	public int valuePerLeatherProduct; // The number of times each pelt's value can be divided by this number, is the amount of leather a pelt produces.
 
@@ -52,7 +52,7 @@ public class JobLeatherWorker : ProfessionScript
 		int startingLeather = Random.Range(5, 11);
 		for (int i = 0; i < startingLeather; i++)
 		{
-			me.inventory.Add(new Item(leatherProduct));
+			me.inventory.Add(new Item(ItemsUtil.GetBasicItem("Leather")));
 		}
 	}
 
@@ -78,7 +78,7 @@ public class JobLeatherWorker : ProfessionScript
 		// First, empty the currentlyTanning list and receive leather.
 		for (int i = 0; i < currentlyTanning.Count; i++)
 		{
-			me.inventory.Add(new Item(leatherProduct));
+			me.inventory.Add(new Item(ItemsUtil.GetBasicItem("Leather")));
 		}
 		if (currentlyTanning.Count > 0)
 		{
@@ -118,11 +118,11 @@ public class JobLeatherWorker : ProfessionScript
 		{
 			return;
 		}
-		Equippable toMake = possibleCreations[Random.Range(0, possibleCreations.Count)];
+		Equippable toMake = ItemsUtil.GetEquipmentItem(possibleCreations[Random.Range(0, possibleCreations.Count)]);
 		int leatherCost = craftingCosts[equipmentSizes[toMake.equipmentSlot]];
 		while (leatherCount < leatherCost)
 		{
-			toMake = possibleCreations[Random.Range(0, possibleCreations.Count)];
+			toMake = ItemsUtil.GetEquipmentItem(possibleCreations[Random.Range(0, possibleCreations.Count)]);
 			leatherCost = craftingCosts[equipmentSizes[toMake.equipmentSlot]];
 		}
 

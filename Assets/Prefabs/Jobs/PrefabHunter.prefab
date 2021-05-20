@@ -52,12 +52,6 @@ MonoBehaviour:
     minWealth: 0
     maxWealth: 0
     allowDead: 0
-  genericDialogue:
-  - species: Human
-    dialogue:
-    - I thought I saw a deer the other day, but its fur was completely white.
-    - There's an awful lot of giant spider nests around Nocturna.
-    - I hope I don't run into a troll today...
   desiredItemCounts:
   - key: Belt
     val: 1
@@ -68,153 +62,73 @@ MonoBehaviour:
     minLoot: 1
     maxLoot: 3
     possibleLoot:
-    - name: Deer Hide
-      pluralName: Deer Hides
-      desc: The hide of a deer. Commonly used to make leather.
-      type:
-      - Animal Hide
-      value: 5
-    - name: Venison
-      pluralName: Venison
-      desc: Meat from a deer.
-      type:
-      - Food
-      value: 3
+    - Deer Hide
+    - Venison
   - name: Rabbit
     noise: Vicious Noises
     danger: -20
     minLoot: 1
     maxLoot: 1
     possibleLoot:
-    - name: Rabbit Meat
-      pluralName: Rabbit Meat
-      desc: Meat from a rabbit.
-      type:
-      - Food
-      value: 3
+    - Rabbit Meat
   - name: Wolf
     noise: Howls
     danger: 10
     minLoot: 1
     maxLoot: 4
     possibleLoot:
-    - name: Wolf Pelt
-      pluralName: Wolf Pelts
-      desc: The pelt of a wolf.
-      type:
-      - Animal Hide
-      value: 4
+    - Wolf Pelt
   - name: Bear
     noise: Roars
     danger: 20
     minLoot: 1
     maxLoot: 2
     possibleLoot:
-    - name: Bear Pelt
-      pluralName: Bear Pelts
-      desc: The pelt of a bear.
-      type:
-      - Animal Hide
-      value: 8
+    - Bear Pelt
   - name: Troll
     noise: Roars
     danger: 30
-    minLoot: 0
+    minLoot: 1
     maxLoot: 2
     possibleLoot:
-    - name: Troll Pelt
-      pluralName: Troll Pelts
-      desc: The pelt of a dangerous troll.
-      type:
-      - Animal Hide
-      value: 10
+    - Troll Pelt
   - name: Antelope
     noise: Snorts
     danger: 0
     minLoot: 1
     maxLoot: 3
     possibleLoot:
-    - name: Antelope Hide
-      pluralName: Antelope Hides
-      desc: The hide of an antelope.
-      type:
-      - Animal Hide
-      value: 5
-    - name: Antelope Meat
-      pluralName: Antelope Meat
-      desc: Meat from an antelope.
-      type:
-      - Food
-      value: 3
+    - Antelope Meat
+    - Antelope Hide
   - name: Giant Spider
     noise: Hisses
     danger: 15
-    minLoot: 0
+    minLoot: 1
     maxLoot: 2
     possibleLoot:
-    - name: Spidersilk
-      pluralName: Spidersilk
-      desc: 'Silk spun from a Giant Spider. '
-      type:
-      - Cloth
-      value: 7
-    - name: Spider Meat
-      pluralName: Spider Meat
-      desc: Meat obtained from a Giant Spider. Gross...
-      type:
-      - Food
-      value: 1
-    - name: Spider Carapace
-      pluralName: Spider Carapaces
-      desc: A chunk of a Giant Spider's carapace.
-      type:
-      - Animal Hide
-      value: 3
+    - Spider Meat
+    - Spidersilk
+    - Spider Carapace
   - name: Pheasant
     noise: Screeches
     danger: -10
-    minLoot: 0
+    minLoot: 1
     maxLoot: 2
     possibleLoot:
-    - name: Pheasant Meat
-      pluralName: Pheasant Meat
-      desc: Meat from a pheasant.
-      type:
-      - Food
-      value: 3
+    - Pheasant Meat
   - name: Caribou
     noise: Screams
     danger: 10
     minLoot: 1
     maxLoot: 3
     possibleLoot:
-    - name: Reindeer Meat
-      pluralName: Reindeer Meat
-      desc: Meat of a reindeer, which are also called caribou in some places.
-      type:
-      - Food
-      value: 4
-    - name: Reindeer Pelt
-      pluralName: Reindeer Pelts
-      desc: The pelt of a reindeer.
-      type:
-      - Animal Hide
-      value: 5
+    - Reindeer Hide
+    - Reindeer Meat
   - name: Moose
     noise: Screams
     danger: 10
     minLoot: 1
     maxLoot: 3
     possibleLoot:
-    - name: Moose Pelt
-      pluralName: Moose Pelts
-      desc: The pelt of a moose.
-      type:
-      - Animal Hide
-      value: 5
-    - name: Moose Meat
-      pluralName: Moose Meat
-      desc: Meat from a moose.
-      type:
-      - Food
-      value: 3
+    - Moose Hide
+    - Moose Meat
