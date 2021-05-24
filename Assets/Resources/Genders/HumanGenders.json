@@ -1,0 +1,56 @@
+{
+  "species": "Human",
+  "possibleGenders": [
+    {
+      "gender": {
+        "name": "Nonbinary",
+        "colourCode": "TODO",
+        "pronouns": {
+          "subjective": "they",
+          "objective": "them",
+          "possessiveDeterminer": "their",
+          "possessive": "theirs",
+          "reflexive": "themselves",
+          "personType": "person"
+        },
+        "useAnyPortrait": true,
+        "portraitsAreExclusive": false
+      },
+      "weight": 30
+    },
+    {
+      "gender": {
+        "name": "Male",
+        "colourCode": "TODO",
+        "pronouns": {
+          "subjective": "he",
+          "objective": "him",
+          "possessiveDeterminer": "his",
+          "possessive": "his",
+          "reflexive": "himself",
+          "personType": "man"
+        },
+        "useAnyPortrait": false,
+        "portraitsAreExclusive": false
+      },
+      "weight": 30
+    }
+    ,{
+      "gender": {
+        "name": "Female",
+        "colourCode": "TODO",
+        "pronouns": {
+          "subjective": "she",
+          "objective": "her",
+          "possessiveDeterminer": "her",
+          "possessive": "hers",
+          "reflexive": "herself",
+          "personType": "woman"
+        },
+        "useAnyPortrait": false,
+        "portraitsAreExclusive": false
+      },
+      "weight": 30
+    }
+  ]
+}

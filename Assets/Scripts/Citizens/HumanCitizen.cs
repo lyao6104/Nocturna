@@ -6,15 +6,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NamesLib;
+using GendersLib;
 
 public class HumanCitizen : CitizenScript
 {
 	protected override void Init()
 	{
-		int genderRoll = Random.Range(0, possibleGenders.Count);
-		gender = possibleGenders[genderRoll];
-		portrait = gc.GetComponent<PortraitScript>().GetPortrait("Human", gender);
-		NocturnaName nameData = NamesUtil.GetHumanName(gender);
+		myGender = GendersUtil.AssignGender(species);
+		portrait = gc.GetComponent<PortraitScript>().GetPortrait("Human", myGender);
+		NocturnaName nameData = NamesUtil.GetHumanName(myGender.name);
 		myName = nameData.fullName;
 		commonName = nameData.commonName;
 		gameObject.name = myName;

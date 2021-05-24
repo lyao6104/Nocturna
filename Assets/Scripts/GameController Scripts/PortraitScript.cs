@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GendersLib;
 
 public class PortraitScript : MonoBehaviour
 {
@@ -36,15 +37,14 @@ public class PortraitScript : MonoBehaviour
 		// This should read in all of the valid portraits for each species
 		foreach (CitizenScript cit in citizenPrefabs)
 		{
-			foreach (string gender in cit.possibleGenders)
+			foreach (string gender in GendersUtil.GetGenderNames(cit.species))
 			{
 				int i = 0;
-				Sprite toAdd = null;
 				citizenPortraits[cit.species + gender] = new List<Sprite>();
 				while (true)
 				{
 					string filePath = "Portraits/" + cit.species + "/" + gender + i;
-					toAdd = Resources.Load<Sprite>(filePath);
+					Sprite toAdd = Resources.Load<Sprite>(filePath);
 					if (toAdd == null)
 					{
 						if (i == 0)
@@ -64,10 +64,19 @@ public class PortraitScript : MonoBehaviour
 		}
 	}
 
-	public Sprite GetPortrait(string race, string gender)
+	public Sprite GetPortrait(string race, Gender gender)
 	{
-		int i = Random.Range(0, citizenPortraits[race + gender].Count);
+		string genderToUse = gender.name;
+		if (gender.useAnyPortrait)
+		{
+			List<string> possiblePortraitLists = GendersUtil.GetGenderNames(race);
+			possiblePortraitLists.RemoveAll(x => GendersUtil.GetGenderByName(race, x).portraitsAreExclusive && !x.Equals(gender.name));
+			int portraitListRoll = Random.Range(0, possiblePortraitLists.Count);
+			genderToUse = possiblePortraitLists[portraitListRoll];
+		}
+
+		int i = Random.Range(0, citizenPortraits[race + genderToUse].Count);
 		//Debug.Log("Portrait is " + citizenPortraits[race + gender][i].name);
-		return citizenPortraits[race + gender][i];
+		return citizenPortraits[race + genderToUse][i];
 	}
 }

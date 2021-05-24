@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NamesLib;
+using GendersLib;
 
 public class NameScript : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class NameScript : MonoBehaviour
 	{
 		foreach (CitizenScript cit in citizenPrefabs)
 		{
-			possibleGenders[cit.species] = new List<string>(cit.possibleGenders);
+			possibleGenders[cit.species] = GendersUtil.GetGenderNames(cit.species);
 		}
 
 		// Set up names for the various races

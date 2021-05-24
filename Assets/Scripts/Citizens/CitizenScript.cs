@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UtilitiesLib;
 using DialogueLib;
+using GendersLib;
 
 [System.Serializable]
 public class ValidTargetTypes
@@ -20,8 +21,9 @@ public class CitizenScript : MonoBehaviour
 {
 	public CitizenScript target;
 	public List<CitizenScript> validTargets;
-	public string myName, commonName, species, gender;
-	public List<string> dialogue, possibleGenders; // Gender only affects portraits. Everyone is referred to as "they".
+	public string myName, commonName, species;
+	public List<string> dialogue;
+	public Gender myGender;
 	// jobSkill ranges from 0 to 100 (inclusive), combatSkill ranges from 0 to 200 (inclusive), with 50 being considered average for both.
 	// These values can all increase somehow over the course of a citizen's lifespan.
 	// taxRate, minTax, validTargetTypes and species should all be assigned in the inspector.
@@ -136,6 +138,40 @@ public class CitizenScript : MonoBehaviour
 		msg = msg.Replace("%seasonCap%", gc.curSeason.ToString());
 		msg = msg.Replace("%weather%", DateWeatherSeasonLib.ClimateFuncs.WeatherToString(gc.curWeather).ToLower());
 		msg = msg.Replace("%weatherCap%", DateWeatherSeasonLib.ClimateFuncs.WeatherToString(gc.curWeather));
+		return msg;
+	}
+
+	/// <summary>
+	/// Localize a given string, replacing all dynamic dialogue tags with the appropriate pronouns.
+	/// Mainly used by other scripts that work with this citizen.
+	/// </summary>
+	/// <param name="msg">A string containing dynamic dialogue tags to be replaced.</param>
+	/// <returns>The localized message, as a string.</returns>
+	public string LocalizePronounsSelf(string msg)
+	{
+		msg = msg.Replace("%pnSubjective%", myGender.pronouns.subjective);
+		msg = msg.Replace("%pnObjective%", myGender.pronouns.objective);
+		msg = msg.Replace("%pnPosDeterminer%", myGender.pronouns.possessiveDeterminer);
+		msg = msg.Replace("%pnPossessive%", myGender.pronouns.possessive);
+		msg = msg.Replace("%pnReflexive%", myGender.pronouns.reflexive);
+		msg = msg.Replace("%pnPersonType%", myGender.pronouns.personType);
+		return msg;
+	}
+
+	/// <summary>
+	/// Localize a given string, replacing all dynamic dialogue tags with the appropriate pronouns.
+	/// This citizen is treated as the target, so this function is useful for dialogue.
+	/// </summary>
+	/// <param name="msg">A string containing dynamic dialogue tags to be replaced.</param>
+	/// <returns>The localized message, as a string.</returns>
+	public string LocalizePronounsTarget(string msg)
+	{
+		msg = msg.Replace("%pnTargetSubjective%", myGender.pronouns.subjective);
+		msg = msg.Replace("%pnTargetObjective%", myGender.pronouns.objective);
+		msg = msg.Replace("%pnTargetPosDeterminer%", myGender.pronouns.possessiveDeterminer);
+		msg = msg.Replace("%pnTargetPossessive%", myGender.pronouns.possessive);
+		msg = msg.Replace("%pnTargetReflexive%", myGender.pronouns.reflexive);
+		msg = msg.Replace("%pnTargetPersonType%", myGender.pronouns.personType);
 		return msg;
 	}
 
