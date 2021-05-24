@@ -14,7 +14,7 @@ public class CitizenDetailsScript : MonoBehaviour
 
 	public TMPro.TMP_Text citizenDetailsText;
 	public TMPro.TMP_Text citizenNameText;
-	public Image portrait;
+	public Image portrait, portraitBackground;
 	public CitizenScript me;
 
 	private GameControllerScript gc;
@@ -33,6 +33,11 @@ public class CitizenDetailsScript : MonoBehaviour
 		}
 		citizenDetailsText.text = "Profession:\n" + me.myJob.jobName + "\n\nSpecies: " + me.species + "\n\nGold: " + me.money + " Gold";
 		citizenNameText.text = me.myName;
+		bool validColour = ColorUtility.TryParseHtmlString(me.myGender.colourCode, out Color bgColour);
+		if (validColour)
+		{
+			portraitBackground.color = bgColour;
+		}
 		portrait.sprite = me.portrait;
 	}
 
