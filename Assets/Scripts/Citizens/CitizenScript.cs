@@ -293,17 +293,40 @@ public class CitizenScript : MonoBehaviour
 		}
 	}
 
-	// This citizen gives gold to another
-	public void PayPerson(CitizenScript recipient)
+	/// <summary>
+	/// This citizen gives gold to another citizen. If this citizen has less gold than the amount
+	/// to be given, then they pay as much as they can.
+	/// </summary>
+	/// <param name="recipient">The citizen being paid.</param>
+	/// <param name="amt">The amount to pay the other citizen.</param>
+	/// <param name="suppressMsg">Whether or not this transaction is hidden from the event log.</param>
+	/// <returns>The amount actually paid, as an integer.</returns>
+	public int PayPerson(CitizenScript recipient, int amt, bool suppressMsg = false)
 	{
-		// TODO: Implement
+		bool enoughMoney = true;
+		if (money < amt)
+		{
+			amt = money;
+			enoughMoney = false;
+		}
+		money -= amt;
+		recipient.GetPaid(amt, true);
+		if (!suppressMsg)
+		{
+			gc.LogMessage(LocalizeString(string.Format("%name% has paid %targetName% {0} Gold.", amt)), "White");
+			if (!enoughMoney)
+			{
+				gc.LogMessage(LocalizeString("%commonName% did not have enough Gold to pay %targetCommonName% the full amount."), "Yellow");
+			}
+		}
+		return amt;
 	}
 
 	// Citizen recieves gold, possibly from their profession. Can also be used to get rid of money if amt is negative.
-	public void GetPaid(int amt, bool suppresMsg = false)
+	public void GetPaid(int amt, bool suppressMsg = false)
 	{
 		money += amt;
-		if (!suppresMsg)
+		if (!suppressMsg)
 		{
 			gc.LogMessage(myName + " has received " + amt + " Gold.", "White");
 		}
