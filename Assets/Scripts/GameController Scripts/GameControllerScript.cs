@@ -4,6 +4,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -37,7 +38,7 @@ public class GameControllerScript : MonoBehaviour
 
 	private Dictionary<string, string> colourTable = new Dictionary<string, string>();
 	private Dictionary<string, GameObject> citizenTypes = new Dictionary<string, GameObject>();
-	private string dayTextBuffer = "";
+	private StringBuilder dayTextBuffer = new StringBuilder();
 	private bool simulating = false;
 	private bool hasDeadCitizens = false;
 
@@ -221,14 +222,14 @@ public class GameControllerScript : MonoBehaviour
 			actualColour = colourTable[colour];
 		}
 		//TMPro.TMP_Text msgComponent = curDayTextObject.GetComponent<TMPro.TMP_Text>();
-		dayTextBuffer += string.Format("<color={1}>{0}</color>\n", msg, actualColour);
+		dayTextBuffer.Append(string.Format("<color={1}>{0}</color>\n", msg, actualColour));
 	}
 
 	// Output a blank line to the event log
 	public void LogSpace()
 	{
 		//TMPro.TMP_Text msgComponent = curDayTextObject.GetComponent<TMPro.TMP_Text>();
-		dayTextBuffer += "\n";
+		dayTextBuffer.Append("\n");
 	}
 
 	// Create a citizen object and add its CitizenScript to the town.
@@ -319,7 +320,7 @@ public class GameControllerScript : MonoBehaviour
 		yield return new WaitForEndOfFrame();
 
 		UpdateInfoBar();
-		LogMessage("A new day has begun.\n ", "Peach");
+		LogMessage(string.Format("A new day has begun ({0}).\n", DateFuncs.DateToString(curDate)), "Peach");
 
 		// Do upkeep for living citizens
 		foreach (CitizenScript citizen in citizens)
@@ -333,8 +334,8 @@ public class GameControllerScript : MonoBehaviour
 		LogMessage("The day has ended.", "Blue");
 		
 		TMPro.TMP_Text msgComponent = curDayTextObject.GetComponent<TMPro.TMP_Text>();
-		msgComponent.text = dayTextBuffer;
-		dayTextBuffer = "";
+		msgComponent.text = dayTextBuffer.ToString();
+		dayTextBuffer.Clear();
 
 		// Clear excess items from shop, oldest items go first.
 		GetComponent<ShopScript>().ClearExcess();
