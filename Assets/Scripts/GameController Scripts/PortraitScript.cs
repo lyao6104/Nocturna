@@ -67,10 +67,11 @@ public class PortraitScript : MonoBehaviour
 	public Sprite GetPortrait(string race, Gender gender)
 	{
 		string genderToUse = gender.name;
-		if (gender.useAnyPortrait)
-		{
+		int useOwnGenderRoll = Random.Range(0, 100);
+		if (gender.useAnyPortrait && useOwnGenderRoll >= gender.ownGenderPortraitChance)
+		{	
 			List<string> possiblePortraitLists = GendersUtil.GetGenderNames(race);
-			possiblePortraitLists.RemoveAll(x => GendersUtil.GetGenderByName(race, x).portraitsAreExclusive && !x.Equals(gender.name));
+			possiblePortraitLists.RemoveAll(x => GendersUtil.GetGenderByName(race, x).portraitsAreExclusive || x.Equals(gender.name));
 			int portraitListRoll = Random.Range(0, possiblePortraitLists.Count);
 			genderToUse = possiblePortraitLists[portraitListRoll];
 		}

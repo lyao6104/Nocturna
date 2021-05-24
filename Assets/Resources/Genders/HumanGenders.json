@@ -4,53 +4,59 @@
     {
       "gender": {
         "name": "Nonbinary",
-        "colourCode": "TODO",
+        "colourCode": "#7A6293",
         "pronouns": {
           "subjective": "they",
           "objective": "them",
           "possessiveDeterminer": "their",
           "possessive": "theirs",
           "reflexive": "themselves",
-          "personType": "person"
+          "personType": "person",
+          "pluralWords": true
         },
         "useAnyPortrait": true,
-        "portraitsAreExclusive": false
+        "portraitsAreExclusive": false,
+        "ownGenderPortraitChance": 40
       },
       "weight": 30
     },
     {
       "gender": {
         "name": "Male",
-        "colourCode": "TODO",
+        "colourCode": "#4C7DC1",
         "pronouns": {
           "subjective": "he",
           "objective": "him",
           "possessiveDeterminer": "his",
           "possessive": "his",
           "reflexive": "himself",
-          "personType": "man"
+          "personType": "man",
+          "pluralWords": false
         },
         "useAnyPortrait": false,
-        "portraitsAreExclusive": false
+        "portraitsAreExclusive": false,
+        "ownGenderPortraitChance": 100
       },
-      "weight": 30
+      "weight": 35
     }
     ,{
       "gender": {
         "name": "Female",
-        "colourCode": "TODO",
+        "colourCode": "#FF4337",
         "pronouns": {
           "subjective": "she",
           "objective": "her",
           "possessiveDeterminer": "her",
           "possessive": "hers",
           "reflexive": "herself",
-          "personType": "woman"
+          "personType": "woman",
+          "pluralWords": false
         },
         "useAnyPortrait": false,
-        "portraitsAreExclusive": false
+        "portraitsAreExclusive": false,
+        "ownGenderPortraitChance": 100
       },
-      "weight": 30
+      "weight": 35
     }
   ]
 }

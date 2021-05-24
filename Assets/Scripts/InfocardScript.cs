@@ -12,7 +12,7 @@ public class InfocardScript : MonoBehaviour
 	public CitizenScript me;
 
 	public TMPro.TMP_Text textBox;
-	public Image portrait;
+	public Image portrait, portraitBackground;
 
 	private void Start()
 	{
@@ -28,6 +28,11 @@ public class InfocardScript : MonoBehaviour
 		//Debug.Log("Infocard has initialized");
 
 		portrait.sprite = me.portrait;
+		bool validColour = ColorUtility.TryParseHtmlString(me.myGender.colourCode, out Color bgColour);
+		if (validColour)
+		{
+			portraitBackground.color = bgColour;
+		}
 		textBox.text = "Name: " + me.myName + "\nSpecies: " + me.species + "\nProfession: " + me.myJob.jobName + "\nMoney: " + me.money + " Gold";
 	}
 

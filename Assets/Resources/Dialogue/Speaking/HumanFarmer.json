@@ -5,6 +5,7 @@
   "dialogue": [
     "It's almost harvesting season.",
     "Hey %targetCommonName%, were you sneaking around my farm the other day?",
+    "I don't know about %targetCommonName%. I could have sworn I saw %pnTargetObjective% sneaking around the other day.",
     "Howdy, %targetCommonName%."
   ]
 }

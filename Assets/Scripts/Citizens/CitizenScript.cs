@@ -132,8 +132,10 @@ public class CitizenScript : MonoBehaviour
 	{
 		msg = msg.Replace("%name%", myName);
 		msg = msg.Replace("%commonName%", commonName);
+		msg = msg.Replace("%profession%", myJob.jobName);
 		msg = msg.Replace("%targetName%", target.myName);
 		msg = msg.Replace("%targetCommonName%", target.commonName);
+		msg = msg.Replace("%targetProfession%", target.myJob.jobName);
 		msg = msg.Replace("%season%", gc.curSeason.ToString().ToLower());
 		msg = msg.Replace("%seasonCap%", gc.curSeason.ToString());
 		msg = msg.Replace("%weather%", DateWeatherSeasonLib.ClimateFuncs.WeatherToString(gc.curWeather).ToLower());
@@ -155,6 +157,29 @@ public class CitizenScript : MonoBehaviour
 		msg = msg.Replace("%pnPossessive%", myGender.pronouns.possessive);
 		msg = msg.Replace("%pnReflexive%", myGender.pronouns.reflexive);
 		msg = msg.Replace("%pnPersonType%", myGender.pronouns.personType);
+
+		msg = msg.Replace("%pnSubjectiveCap%", myGender.pronouns.subjective.Capitalize());
+		msg = msg.Replace("%pnObjectiveCap%", myGender.pronouns.objective.Capitalize());
+		msg = msg.Replace("%pnPosDeterminerCap%", myGender.pronouns.possessiveDeterminer.Capitalize());
+		msg = msg.Replace("%pnPossessiveCap%", myGender.pronouns.possessive.Capitalize());
+		msg = msg.Replace("%pnReflexiveCap%", myGender.pronouns.reflexive.Capitalize());
+		msg = msg.Replace("%pnPersonTypeCap%", myGender.pronouns.personType.Capitalize());
+
+		if (myGender.pronouns.pluralWords)
+		{
+			msg = msg.Replace("%pnIs%", "are");
+			msg = msg.Replace("%pnSeems%", "seem");
+			msg = msg.Replace("%pnWas%", "were");
+			msg = msg.Replace("%pnHas%", "have");
+		}
+		else
+		{
+			msg = msg.Replace("%pnIs%", "is");
+			msg = msg.Replace("%pnSeems%", "seems");
+			msg = msg.Replace("%pnWas%", "was");
+			msg = msg.Replace("%pnHas%", "has");
+		}
+
 		return msg;
 	}
 
@@ -172,6 +197,29 @@ public class CitizenScript : MonoBehaviour
 		msg = msg.Replace("%pnTargetPossessive%", myGender.pronouns.possessive);
 		msg = msg.Replace("%pnTargetReflexive%", myGender.pronouns.reflexive);
 		msg = msg.Replace("%pnTargetPersonType%", myGender.pronouns.personType);
+
+		msg = msg.Replace("%pnTargetSubjectiveCap%", myGender.pronouns.subjective.Capitalize());
+		msg = msg.Replace("%pnTargetObjectiveCap%", myGender.pronouns.objective.Capitalize());
+		msg = msg.Replace("%pnTargetPosDeterminerCap%", myGender.pronouns.possessiveDeterminer.Capitalize());
+		msg = msg.Replace("%pnTargetPossessiveCap%", myGender.pronouns.possessive.Capitalize());
+		msg = msg.Replace("%pnTargetReflexiveCap%", myGender.pronouns.reflexive.Capitalize());
+		msg = msg.Replace("%pnTargetPersonTypeCap%", myGender.pronouns.personType.Capitalize());
+
+		if (myGender.pronouns.pluralWords)
+		{
+			msg = msg.Replace("%pnTargetIs%", "are");
+			msg = msg.Replace("%pnTargetSeems%", "seem");
+			msg = msg.Replace("%pnTargetWas%", "were");
+			msg = msg.Replace("%pnTargetHas%", "have");
+		}
+		else
+		{
+			msg = msg.Replace("%pnTargetIs%", "is");
+			msg = msg.Replace("%pnTargetSeems%", "seems");
+			msg = msg.Replace("%pnTargetWas%", "was");
+			msg = msg.Replace("%pnTargetHas%", "has");
+		}
+
 		return msg;
 	}
 
@@ -187,6 +235,8 @@ public class CitizenScript : MonoBehaviour
 	{
 		string myMsg = myName + ": " + msg;
 		myMsg = LocalizeString(myMsg);
+		myMsg = LocalizePronounsSelf(myMsg);
+		myMsg = target.LocalizePronounsTarget(myMsg);
 
 		gc.GetComponent<GameControllerScript>().LogMessage(myMsg, "Cyan");
 	}

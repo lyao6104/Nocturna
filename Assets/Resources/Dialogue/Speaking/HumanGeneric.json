@@ -12,6 +12,7 @@
     "%targetCommonName% seems kind of sketchy to me...",
     "Hey, %targetCommonName%, I'm %commonName%.",
     "Ugh, it's %weather% outside today.",
-    "I can't wait until it's %season% again! Wait..."
+    "I can't wait until it's %season% again! Wait...",
+    "I spoke to %targetCommonName% the other day. %pnTargetSubjectiveCap% %pnTargetSeems% alright."
   ]
 }

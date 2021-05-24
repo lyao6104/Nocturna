@@ -15,6 +15,7 @@ namespace GendersLib
 	public class PronounData
 	{
 		public string subjective, objective, possessiveDeterminer, possessive, reflexive, personType;
+		public bool pluralWords;
 	}
 
 	[System.Serializable]
@@ -26,6 +27,8 @@ namespace GendersLib
 		public bool useAnyPortrait;
 		// Are this gender's portraits excluded from the above?
 		public bool portraitsAreExclusive;
+		// If this gender can use any portrait, how likely are they to use one specifically for their gender?
+		public int ownGenderPortraitChance;
 	}
 
 	[System.Serializable]

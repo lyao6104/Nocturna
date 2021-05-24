@@ -4,6 +4,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 namespace UtilitiesLib
@@ -20,5 +21,15 @@ namespace UtilitiesLib
 	{
         public string key;
         public string val;
+	}
+
+    public static class NocturnaUtils
+	{
+        public static string Capitalize(this string str)
+		{
+            StringBuilder result = new StringBuilder(str);
+            result[0] = char.ToUpper(str[0]);
+            return result.ToString();
+		}
 	}
 }
